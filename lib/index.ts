@@ -1,3 +1,5 @@
+/// <reference path="../pxt_modules/neopixel/neopixel.ts" />
+
 /**
  * Micro:Bit makeCode extension for neopixel/ws2812b matrices
  *
@@ -46,7 +48,7 @@ namespace neopixelExtras {
      * A Matrix made of ws2812b LEDs
      */
     export class Matrix {
-        strip: neopixel.Strip = null
+        strip?: neopixel.Strip = null
         substrip_length: number = 2
         substrip_count: number = 2
         pattern: stripPattern = stripPattern.zigzag
