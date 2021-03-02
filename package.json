@@ -2,15 +2,22 @@
   "name": "matrix-from-vector",
   "version": "1.0.0",
   "description": "Create 2D matricies from 1D vectors",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc --noResolve",
+    "prepublish": "npm run build",
+    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'"
   },
   "author": "Adam Griffiths",
   "license": "ISC",
   "devDependencies": {
+    "@types/chai": "^4.2.15",
+    "@types/mocha": "^8.2.1",
+    "chai": "^4.3.0",
     "mocha": "^8.3.0",
     "pxt": "^0.5.1",
+    "ts-node": "^9.1.1",
     "typescript": "^4.2.2"
   },
   "dependencies": {

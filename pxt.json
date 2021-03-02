@@ -1,9 +1,0 @@
-{
-    "name": "neopixel-dependancy",
-    "description": "",
-    "dependencies": {
-        "neopixel": "github:microsoft/pxt-neopixel#v0.7.3"
-    },
-    "files": [],
-    "preferredEditor": "blocksprj"
-}
