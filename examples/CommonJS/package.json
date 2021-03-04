@@ -1,0 +1,16 @@
+{
+  "name": "CommonJS",
+  "version": "1.0.0",
+  "description": "A CommonJS / Node previous to v12 example",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "matrix-from-vector": "^1.0.0"
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "author": ""
+}

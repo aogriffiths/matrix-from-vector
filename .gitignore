@@ -128,3 +128,6 @@ pxt_modules
 projects
 *.db
 *.tgz
+
+#API Extractor
+/temp

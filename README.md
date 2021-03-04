@@ -6,4 +6,22 @@ A simple explantion is imagine a long strip of leds, cut at regular intervals an
 
 The strip if the "vector".
 
-The grif is the "matrix"
+The grid is the "matrix".
+
+## Usage
+
+Install as a dependency
+```bash
+nom init -y .
+npm install matrix-from-vector
+```
+
+**CommonJS**
+```js
+var { Matrix } = require('matrix-from-vector')
+```
+
+**ES6 or TypeScript**
+```js
+import { Matrix } from 'matrix-from-vector'
+```
