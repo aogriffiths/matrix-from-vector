@@ -46,8 +46,39 @@ export function buildSVGofMatrix(matrix: matrix.Matrix) : string {
   const cellW = Math.abs(xScale(1) - xScale(0))
   const cellH = Math.abs(yScale(1) - yScale(0))
 
-  const xC = (d:matrix.PixelPosition)=>{return xScale(d.x)+cellW/2}
-  const yC = (d:matrix.PixelPosition)=>{return yScale(d.y)-cellH/2}
+  const xCenter = (d:matrix.PixelPosition)=>{return xScale(d.x)+cellW/2}
+  const yCenter = (d:matrix.PixelPosition)=>{return yScale(d.y)-cellH/2}
+  const center = (d: matrix.PixelPosition):[number,number] => ([xCenter(d), yCenter(d)])
+
+  const centerOffset = (s: matrix.PixelPosition, e: matrix.PixelPosition) => {
+    var p1 = center(s)
+    var p2 = center(e)
+    var xD = p1[0] - p2[0]
+    var yD = p1[1] - p2[1]
+    var dD = Math.sqrt(xD * xD + yD * yD)
+    var ratioStart = (PIXEL_SIZE/2) / dD
+    var ratioEnd= ((PIXEL_SIZE/2) + 10) / dD
+    p1[0] -= (ratioStart * xD)
+    p1[1] -= (ratioStart * yD)
+    p2[0] += (ratioEnd * xD)
+    p2[1] += (ratioEnd * yD)
+    return [p1,p2]
+  }
+
+  var defs = svg.append("defs")
+
+  defs.append("marker")
+      .attr("id", "arrow")
+      .attr("viewBox", "0 -5 10 10")
+      .attr("refX", 5)
+      .attr("refY", 0)
+      .attr("markerWidth", 4)
+      .attr("markerHeight", 4)
+      .attr("orient", "auto")
+      .attr("fill", "#404040")
+      .append("path")
+        .attr("d", "M0,-4L10,0L0,4")
+        .attr("class","arrowHead")
 
   // CELS
   var g = svg.selectAll("g.cells")
@@ -68,17 +99,19 @@ export function buildSVGofMatrix(matrix: matrix.Matrix) : string {
       .attr("x", cellH/2 - PIXEL_SIZE/2)
       .attr("width", PIXEL_SIZE)
       .attr("height", PIXEL_SIZE)
-      .style("stroke", "grey")
-      .style("fill", "orange");
+      .style("stroke", "#404040")
+      .style("stroke-width", 4)
+      .style("fill", "#0000ff");
 
   g.append("text")
     .text((d,i)=>{return(i)})
     .attr("x",cellW/2)
     .attr("y",-cellH/2)
     .attr("alignment-baseline","middle")
-    .attr("font-size", "12")
+    .attr("font-size", "16")
     .attr("stroke-width", "0")
-    .attr("stroke", "#000")
+    .attr("stroke", "#fff")
+    .attr("fill", "white")
     .attr("text-anchor", "middle")
 
   // ARROWS
@@ -89,13 +122,16 @@ export function buildSVGofMatrix(matrix: matrix.Matrix) : string {
     .classed("arrows", true)
 
   var arrow = (d:PixelPair)=>{
-    return d3.line()([[xC(d.start), yC(d.start)], [xC(d.end), yC(d.end)]])
+    return d3.line()(centerOffset(d.start, d.end))
   }
 
   ga.append("path")
       .attr("d", arrow)
-      .style("stroke", "black")
+      .attr("marker-end", "url(#arrow)",)
+      .style("stroke", "#404040")
+      .style("stroke-width", 4)
       .style("fill", "none");
+
 
   return body.html();
 }
