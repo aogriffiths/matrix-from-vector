@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.js",
   "scripts": {
-    "build": "tsc",
-    "build:watch": "tsc -w",
+    "build:tsc": "tsc",
+    "build:tsc-watch": "tsc -w",
     "build:api-extract": "mkdir -p etc; api-extractor run --local --verbose",
     "build:api-docs": "api-documenter markdown --input-folder temp --output-folder docs/api",
     "build:layout-docs": "node dist/generatelayouts.js",
