@@ -9,7 +9,19 @@ import {generateAllLayouts, AllLayouts} from "./generateAllLayouts"
 var width = 4               // pixels wide
 var height = 4              // pixels high
 const TEMPLATE_DIR = '../docs'
-const OUTOPUT_DIR = '../docs/generated'
+const OUTPUT_DIR = '../docs/generated/layouts'
+
+function ensuredir(dir: string){
+  var fulldir = path.resolve(__dirname, dir)
+  if (!fs.existsSync(fulldir)){
+    fs.mkdirSync(fulldir);
+  }
+}
+
+ensuredir('../docs')
+ensuredir('../docs/generated')
+ensuredir('../docs/generated/layouts')
+
 
 var allLayouts: AllLayouts = generateAllLayouts()
 
@@ -26,7 +38,7 @@ allLayouts.pattern?.forEach(function(pattern){
       })
       start_corner.imageFile = `${pattern.name}_${direction.name}_${start_corner.name}.svg`
       var svg = buildSVGofMatrix(amatrix)
-      fs.writeFileSync(path.resolve(__dirname, OUTOPUT_DIR, start_corner.imageFile), svg)
+      fs.writeFileSync(path.resolve(__dirname, OUTPUT_DIR, start_corner.imageFile), svg)
     })
   })
 })
@@ -37,4 +49,5 @@ allLayouts.pattern?.forEach(function(pattern){
 const templateStr = fs.readFileSync(path.resolve(__dirname, TEMPLATE_DIR, 'layouts.md.handlebars')).toString('utf8')
 const template = Handlebars.compile(templateStr)
 const result = template(allLayouts)
-fs.writeFileSync(path.resolve(__dirname, OUTOPUT_DIR, 'layouts.md'), result)
+
+fs.writeFileSync(path.resolve(__dirname, OUTPUT_DIR, 'layouts.md'), result)

@@ -25,3 +25,8 @@ var { Matrix } = require('matrix-from-vector')
 ```js
 import { Matrix } from 'matrix-from-vector'
 ```
+
+## Documentation
+
+* [All layouts](docs/generated/layouts/layouts.md)
+* [Full API](docs/generated/api/index.md)

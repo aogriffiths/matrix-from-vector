@@ -8,7 +8,7 @@
     "build:tsc": "tsc",
     "build:tsc-watch": "tsc -w",
     "build:api-extract": "mkdir -p etc; api-extractor run --local --verbose",
-    "build:api-docs": "api-documenter markdown --input-folder temp --output-folder docs/api",
+    "build:api-docs": "api-documenter markdown --input-folder temp --output-folder docs/generated/api",
     "build:layout-docs": "node dist/generatelayouts.js",
     "prepublish": "npm run build",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'"
@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "d3": "^6.5.0",
-    "jsdom": "^16.4.0"
+    "jsdom": "^16.4.0",
+    "request": "^2.88.2"
   }
 }
