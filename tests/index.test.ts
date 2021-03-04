@@ -1,7 +1,7 @@
-/// <reference path="../pxt_modules/neopixel/neopixel.ts" />
 
 import { expect } from "chai";
 import * as matrix from "../lib/index"
+
 
 describe('calculate', function() {
   it('add', function() {
@@ -17,28 +17,13 @@ describe('Matrix', function() {
     expect(m.fullstrip_length).equal(0)
   })
 
-  it('should constuct without substrip_length', function() {
+  it('should constuct with width and height', function() {
     const m = new matrix.Matrix({
-      fullstrip_length: 12,
-      substrip_count: 4
+      width: 4,
+      height: 6
     })
-    expect(m.substrip_length).equal(12/4)
-  })
-
-  it('should constuct without fullstrip_length', function() {
-    const m = new matrix.Matrix({
-      substrip_length: 7,
-      substrip_count: 4
-    })
-    expect(m.fullstrip_length).equal(4*7)
-  })
-
-  it('should constuct without substrip_count', function() {
-    const m = new matrix.Matrix({
-      fullstrip_length: 30,
-      substrip_length: 6
-    })
-    expect(m.substrip_count).equal(30/6)
+    expect(m.fullstrip_length).equal(4*6)
+    expect(m.substrip_count * m.substrip_length).equal(4*6)
   })
 
   //3x3 matricies
@@ -239,8 +224,8 @@ describe('Matrix', function() {
    var width =  test.matrix[0].length
     it(`should create ${width}x${height} with '${matrix.startCorner[test.startCorner]}' start, '${matrix.stripPattern[test.stripPattern]}' pattern, '${matrix.stripDirection[test.stripDirection]}' direction`, function() {
       var m = new matrix.Matrix({
-        substrip_count: test.stripDirection === matrix.stripDirection.X ? height : width,
-        substrip_length: test.stripDirection === matrix.stripDirection.X ? width : height,
+        width,
+        height,
         start_corner: test.startCorner,
         pattern: test.stripPattern,
         direction: test.stripDirection,

@@ -1,4 +1,13 @@
 
+//utiltiy function to generate list of the coordinates in a matrix
+function* generateCoordinates(w: number, h: number) {
+  for(var j:number = 0; j<h; j++){
+    for(var i:number = 0; i<w; i++){
+      yield {x:i, y:j}
+    }
+  }
+}
+
 export enum startCorner{
   //% block="Top Left"
   TopLeft=1,
@@ -27,22 +36,54 @@ export enum stripDirection{
 }
 
 export interface MatrixConstuctor {
-  fullstrip_length?: number
-  substrip_length?: number
-  substrip_count?: number
+  height?: number
+  width?: number
   pattern?: stripPattern
   start_corner?: startCorner
   direction?: stripDirection
 }
 
+// PixelPositions
+// An array of pixel numbers and their coordinates
+export interface PixelPosition{
+  n:number //pixel number
+  x:number //x coordinate
+  y:number //y coordinate
+}
 
 export class Matrix {
-    fullstrip_length: number
-    substrip_length: number
-    substrip_count: number
+    width: number
+    height: number
     pattern: stripPattern
     start_corner: startCorner
     direction: stripDirection
+
+    get fullstrip_length(): number {
+      return this.width * this.height
+    }
+
+    get substrip_length(): number {
+      return this.direction == stripDirection.X
+        ? this.width
+        : this.height
+    }
+    set substrip_length(newV: number) {
+      this.direction == stripDirection.X
+        ? (this.width = newV)
+        : (this.height = newV)
+    }
+
+    get substrip_count(): number {
+      return this.direction == stripDirection.X
+        ? this.height
+        : this.width
+    }
+    set substrip_count(newV: number) {
+      this.direction == stripDirection.X
+        ? (this.width = newV)
+        : (this.height = newV)
+    }
+
     //   y
     //   TL. .TR
     //   . . . .
@@ -50,35 +91,15 @@ export class Matrix {
     //   BL. .BR x
 
     constructor({
-      fullstrip_length,
-      substrip_length,
-      substrip_count,
+      height=0,
+      width=0,
       pattern = stripPattern.zigzag,
       start_corner =  startCorner.BottomLeft,
       direction = stripDirection.X
     }: MatrixConstuctor) {
-      //attempt to caluclate missing parameters
-      if(fullstrip_length === undefined && substrip_length != undefined && substrip_count != undefined) {
-        fullstrip_length = substrip_length * substrip_count
 
-      }else if(substrip_length === undefined && substrip_count != undefined && fullstrip_length != undefined) {
-
-        substrip_length = fullstrip_length / substrip_count
-      }else if(substrip_count === undefined && fullstrip_length != undefined && substrip_length != undefined) {
-
-        substrip_count = fullstrip_length / substrip_length
-      }
-      //if any are still missing set all to zero
-      if(fullstrip_length === undefined || substrip_length === undefined || substrip_count === undefined) {
-
-        fullstrip_length = 0
-        substrip_length = 0
-        substrip_count = 0
-      }
-
-      this.fullstrip_length = fullstrip_length
-      this.substrip_length = substrip_length
-      this.substrip_count = substrip_count
+      this.width = width
+      this.height = height
       this.pattern = pattern
       this.start_corner = start_corner
       this.direction = direction
@@ -146,4 +167,18 @@ export class Matrix {
 
       return res.full * this.substrip_length + res.rem
     }
+
+
+    /**
+     * get a list of pixel positions for this marix
+     */
+    pixelPositions() : PixelPosition[]{
+      var res:PixelPosition[]=[]
+      for(let c of generateCoordinates(this.width, this.height)){
+        let n = this.getPixel(c.x, c.y)
+        res[n]={n, ...c}
+      }
+      return res
+    }
+
 }
