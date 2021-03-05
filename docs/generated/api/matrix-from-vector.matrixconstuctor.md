@@ -4,7 +4,7 @@
 
 ## MatrixConstuctor interface
 
-Parameters for creating a Matrix. Used by . (beta)
+Parameters for creating a Matrix. Used by [the Matrix constructor](./matrix-from-vector.matrix.md)<!-- -->. (beta)
 
 <b>Signature:</b>
 

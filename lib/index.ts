@@ -58,7 +58,7 @@ export enum StripDirection{
 
 /**
  * Parameters for creating a Matrix.
- * Used by {@link Matrix.constructor}.
+ * Used by {@link Matrix | the Matrix constructor}.
  * (beta)
  * @public
  */
