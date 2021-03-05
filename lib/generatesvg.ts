@@ -78,6 +78,20 @@ export function buildSVGofMatrix(matrix: matrix.Matrix) : string {
         .attr("d", "M0,-4L10,0L0,4")
         .attr("class","arrowHead")
 
+  defs.append("marker")
+      .attr("id", "arrow_green")
+      .attr("viewBox", "0 -5 10 10")
+      .attr("refX", 5)
+      .attr("refY", 0)
+      .attr("markerWidth", 4)
+      .attr("markerHeight", 4)
+      .attr("orient", "auto")
+      .attr("fill", "#66ff66")
+      .append("path")
+        .attr("d", "M0,-4L10,0L0,4")
+        .attr("class","arrowHead")
+
+
   // CELS
   var g = svg.selectAll("g.cells")
     .data(positions)
@@ -97,9 +111,9 @@ export function buildSVGofMatrix(matrix: matrix.Matrix) : string {
       .attr("x", cellH/2 - PIXEL_SIZE/2)
       .attr("width", PIXEL_SIZE)
       .attr("height", PIXEL_SIZE)
-      .style("stroke", "#404040")
+      .style("stroke", (d,i)=>{return i==0 ? "#66ff66" : "#404040" })
       .style("stroke-width", 4)
-      .style("fill", "#0000ff");
+      .style("fill", (d,i)=>{return i==0 ? "#00cc00" : "#0000ff" });
 
   g.append("text")
     .text((d,i)=>{return(i)})
@@ -125,8 +139,9 @@ export function buildSVGofMatrix(matrix: matrix.Matrix) : string {
 
   ga.append("path")
       .attr("d", arrow)
-      .attr("marker-end", "url(#arrow)",)
-      .style("stroke", "#404040")
+      .attr("marker-end", (d,i)=>{return i==0 ? "url(#arrow_green)" : "url(#arrow)" })
+      .style("stroke", (d,i)=>{return i==0 ? "#66ff66" : "#404040" })
+      .style("stroke-dasharray", (d,i)=>{return (i + 1 ) % matrix.width == 0 ? "4 4" : null })
       .style("stroke-width", 4)
       .style("fill", "none");
 

@@ -81,7 +81,7 @@ export interface MatrixConstuctor {
   start_corner?: StripStartCorner
   /**
    * The initial direction the vector travels from the start corner across
-   * the natrix . Default `StripDirection.X`
+   * the matrix . Default `StripDirection.X`
    */
   direction?: StripDirection
 }
@@ -129,7 +129,7 @@ export class Matrix {
     start_corner: StripStartCorner
     /**
      * The initial direction the vector travels from the start corner across
-     * the natrix
+     * the matrix
      */
     direction: StripDirection
 

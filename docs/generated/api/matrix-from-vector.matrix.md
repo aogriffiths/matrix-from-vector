@@ -22,7 +22,7 @@ export declare class Matrix
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [direction](./matrix-from-vector.matrix.direction.md) |  | [StripDirection](./matrix-from-vector.stripdirection.md) | The initial direction the vector travels from the start corner across the natrix |
+|  [direction](./matrix-from-vector.matrix.direction.md) |  | [StripDirection](./matrix-from-vector.stripdirection.md) | The initial direction the vector travels from the start corner across the matrix |
 |  [fullstrip\_length](./matrix-from-vector.matrix.fullstrip_length.md) |  | number | The full strip length for this matrix. Can not be set directly. calculated based on the width and height of the matrix. (beta) |
 |  [height](./matrix-from-vector.matrix.height.md) |  | number | Height of the matrix |
 |  [pattern](./matrix-from-vector.matrix.pattern.md) |  | [StripPattern](./matrix-from-vector.strippattern.md) | Matrix pattern |

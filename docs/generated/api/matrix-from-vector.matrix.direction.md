@@ -4,7 +4,7 @@
 
 ## Matrix.direction property
 
-The initial direction the vector travels from the start corner across the natrix
+The initial direction the vector travels from the start corner across the matrix
 
 <b>Signature:</b>
 
