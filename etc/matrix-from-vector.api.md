@@ -9,7 +9,8 @@ export class Matrix {
     constructor(options: MatrixConstuctor);
     direction: VectorDirection;
     get fullstrip_length(): number;
-    getPixel(x: number, y: number): number;
+    getAllPositions(): Position[];
+    getVectorIndex(x: number, y: number): number;
     height: number;
     isBotomUp(): boolean;
     isBtmStart(): boolean;
@@ -20,7 +21,6 @@ export class Matrix {
     isTopDown(): boolean;
     isTopStart(): boolean;
     pattern: VectorPattern;
-    pixelPositions(): PixelPosition[];
     start_corner: MatrixCorner;
     get substrip_count(): number;
     set substrip_count(newV: number);
@@ -47,12 +47,9 @@ export enum MatrixCorner {
 }
 
 // @public
-export interface PixelPosition {
-    // (undocumented)
+export interface Position {
     n: number;
-    // (undocumented)
     x: number;
-    // (undocumented)
     y: number;
 }
 

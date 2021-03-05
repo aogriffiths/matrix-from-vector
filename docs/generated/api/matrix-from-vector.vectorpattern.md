@@ -4,7 +4,7 @@
 
 ## VectorPattern enum
 
-The possible vector patterns (beta)
+The possible patterns the vector can follow to cover the matrix
 
 <b>Signature:</b>
 

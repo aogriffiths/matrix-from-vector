@@ -35,7 +35,8 @@ export declare class Matrix
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
-|  [getPixel(x, y)](./matrix-from-vector.matrix.getpixel.md) |  | Return this 1D vector index of a pixel based on its 2D matrix coordinates (beta) |
+|  [getAllPositions()](./matrix-from-vector.matrix.getallpositions.md) |  | Return all value positions with the <code>x,y</code> coordinates in the matrix and thier <code>n</code> possition in the vector |
+|  [getVectorIndex(x, y)](./matrix-from-vector.matrix.getvectorindex.md) |  | Return this 1D vector index of a pixel based on its 2D matrix coordinates (beta) |
 |  [isBotomUp()](./matrix-from-vector.matrix.isbotomup.md) |  | Returns whether this matrix has a <b>bottom up</b> pattern (beta) |
 |  [isBtmStart()](./matrix-from-vector.matrix.isbtmstart.md) |  | Returns whether this matrix has a pattern starting at the <b>bottom</b> (beta) |
 |  [isLefStart()](./matrix-from-vector.matrix.islefstart.md) |  | Returns whether this matrix has a pattern starting on the <b>left</b> (beta) |
@@ -44,5 +45,4 @@ export declare class Matrix
 |  [isRitStart()](./matrix-from-vector.matrix.isritstart.md) |  | Returns whether this matrix has a pattern starting on the <b>right</b> (beta) |
 |  [isTopDown()](./matrix-from-vector.matrix.istopdown.md) |  | Returns whether this matrix has a <b>top down</b> patterm (beta) |
 |  [isTopStart()](./matrix-from-vector.matrix.istopstart.md) |  | Returns whether this matrix has a pattern starting at the <b>top</b> (beta) |
-|  [pixelPositions()](./matrix-from-vector.matrix.pixelpositions.md) |  | Return all pixel positions for the matrix (beta) |
 

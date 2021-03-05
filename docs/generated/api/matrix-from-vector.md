@@ -14,14 +14,14 @@
 
 |  Enumeration | Description |
 |  --- | --- |
-|  [MatrixCorner](./matrix-from-vector.matrixcorner.md) | The four corners of the matrix. The vector must start in one of these corners. (beta) |
+|  [MatrixCorner](./matrix-from-vector.matrixcorner.md) | The four corners of the matrix. The vector must start in one of these corners. |
 |  [VectorDirection](./matrix-from-vector.vectordirection.md) | The directions the vector can travel across the matrix (beta) |
-|  [VectorPattern](./matrix-from-vector.vectorpattern.md) | The possible vector patterns (beta) |
+|  [VectorPattern](./matrix-from-vector.vectorpattern.md) | The possible patterns the vector can follow to cover the matrix |
 
 ## Interfaces
 
 |  Interface | Description |
 |  --- | --- |
 |  [MatrixConstuctor](./matrix-from-vector.matrixconstuctor.md) | Parameters for creating a Matrix. Used by [the Matrix constructor](./matrix-from-vector.matrix.md)<!-- -->. (beta) |
-|  [PixelPosition](./matrix-from-vector.pixelposition.md) | PixelPositions An array of pixel numbers and their coordinates (beta) |
+|  [Position](./matrix-from-vector.position.md) | The positions of a value, with it's <code>x,y</code> coordinate in the matrix and it's <code>n</code> possition in the vector |
 
