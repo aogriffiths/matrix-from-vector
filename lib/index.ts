@@ -15,7 +15,6 @@ function* generateCoordinates(w: number, h: number) {
 
 /**
  * The four corners of the matrix. The vector must start in one of these corners.
- * (beta)
  * @public
  */
 export enum MatrixCorner{
@@ -27,21 +26,18 @@ export enum MatrixCorner{
 
   /**
    * Bottom right (x=max, y=0)
-   * (beta)
    * @public
    */
   BottomRight,
 
   /**
    * Top left (x=0, y=max)
-   * (beta)
    * @public
    */
   TopLeft,
 
   /**
    * Top right (x=max, y=max)
-   * (beta)
    * @public
    */
   TopRight
@@ -64,8 +60,7 @@ export enum VectorDirection{
 }
 
 /**
- * The possible vector patterns
- * (beta)
+ * The possible patterns the vector can follow to cover the matrix
  * @public
  */
 export enum VectorPattern{
@@ -110,15 +105,22 @@ export interface MatrixConstuctor {
 }
 
 /**
- * PixelPositions
- * An array of pixel numbers and their coordinates
- * (beta)
+ * The positions of a value, with it's `x,y` coordinate in the matrix and it's `n` possition in the vector
  * @public
  */
-export interface PixelPosition{
-  n:number //pixel number
-  x:number //x coordinate
-  y:number //y coordinate
+export interface Position{
+  /**
+   * Position in the vector
+   */
+  n:number
+  /**
+   * x coordinate in the matrix
+   */
+  x:number
+  /**
+   * y coordinate in the matrix
+   */
+  y:number
 }
 
 //
@@ -311,7 +313,7 @@ export class Matrix {
      * @param y - the y coordinate of the pixel
      * @returns - the pixel number on the strip that makes up this matrix
      */
-    getPixel(x: number, y: number): number{
+    getVectorIndex(x: number, y: number): number{
       //Correct for start corner (using negative coordinates for now)
       if ( this.start_corner == MatrixCorner.TopLeft ||
            this.start_corner == MatrixCorner.TopRight ) {
@@ -363,15 +365,14 @@ export class Matrix {
 
 
     /**
-     * Return all pixel positions for the matrix
-     * (beta)
+     * Return all value positions with the `x,y` coordinates in the matrix and thier `n` possition in the vector
      * @public
-     * @returns - array of PixelPosition items
+     * @returns - array of Position items
      */
-    pixelPositions() : PixelPosition[]{
-      var res:PixelPosition[]=[]
+    getAllPositions() : Position[]{
+      var res:Position[]=[]
       for(let c of generateCoordinates(this.width, this.height)){
-        let n = this.getPixel(c.x, c.y)
+        let n = this.getVectorIndex(c.x, c.y)
         res[n]={n, ...c}
       }
       return res

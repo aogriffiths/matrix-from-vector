@@ -8,10 +8,10 @@ var PIXEL_SIZE = 40     // max size for each pixel in a cell
 
 // Create an array of pixel pairs
 interface PixelPair{
-  start: matrix.PixelPosition
-  end: matrix.PixelPosition
+  start: matrix.Position
+  end: matrix.Position
 }
-function generatePixelPairs(positions: matrix.PixelPosition[]) : PixelPair[]{
+function generatePixelPairs(positions: matrix.Position[]) : PixelPair[]{
   var pairs:PixelPair[]=[]
   for(var i=0; i<positions.length-1; i++){
     pairs.push({start:positions[i], end:positions[i+1]})
@@ -24,7 +24,7 @@ export function buildSVGofMatrix(matrix: matrix.Matrix) : string {
   const { JSDOM } = jsdom
   const dom = new JSDOM(`<!DOCTYPE html><body></body>`)
 
-  var positions = matrix.pixelPositions()
+  var positions = matrix.getAllPositions()
   var pairs =  generatePixelPairs(positions)
 
   let body = d3.select(dom.window.document.querySelector("body"))
@@ -38,17 +38,17 @@ export function buildSVGofMatrix(matrix: matrix.Matrix) : string {
       .domain([0, matrix.height])
       .range([IMAGE_SIZE, 0])
 
-  const x = (d:matrix.PixelPosition)=>{return xScale(d.x)}
-  const y = (d:matrix.PixelPosition)=>{return yScale(d.y)}
+  const x = (d:matrix.Position)=>{return xScale(d.x)}
+  const y = (d:matrix.Position)=>{return yScale(d.y)}
 
   const cellW = Math.abs(xScale(1) - xScale(0))
   const cellH = Math.abs(yScale(1) - yScale(0))
 
-  const xCenter = (d:matrix.PixelPosition)=>{return xScale(d.x)+cellW/2}
-  const yCenter = (d:matrix.PixelPosition)=>{return yScale(d.y)-cellH/2}
-  const center = (d: matrix.PixelPosition):[number,number] => ([xCenter(d), yCenter(d)])
+  const xCenter = (d:matrix.Position)=>{return xScale(d.x)+cellW/2}
+  const yCenter = (d:matrix.Position)=>{return yScale(d.y)-cellH/2}
+  const center = (d: matrix.Position):[number,number] => ([xCenter(d), yCenter(d)])
 
-  const centerOffset = (s: matrix.PixelPosition, e: matrix.PixelPosition) => {
+  const centerOffset = (s: matrix.Position, e: matrix.Position) => {
     var p1 = center(s)
     var p2 = center(e)
     var xD = p1[0] - p2[0]

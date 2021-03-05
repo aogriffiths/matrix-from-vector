@@ -237,7 +237,7 @@ describe('Matrix', function() {
         var j = height - jr - 1
         actualmatrix[jr] = new Array(width);
         for(var i = 0; i<width;i++){
-          actualmatrix[jr][i]=m.getPixel(i,j)
+          actualmatrix[jr][i]=m.getVectorIndex(i,j)
         }
       }
       //console.log(actualmatrix)
