@@ -29,4 +29,4 @@ import { Matrix } from 'matrix-from-vector'
 ## Documentation
 
 * [All layouts](docs/generated/layouts/layouts.md)
-* [Full API](docs/generated/api/index.md)
+* [Full API](docs/generated/api/matrix-from-vector.md)
