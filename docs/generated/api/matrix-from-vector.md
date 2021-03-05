@@ -22,6 +22,6 @@
 
 |  Interface | Description |
 |  --- | --- |
-|  [MatrixConstuctor](./matrix-from-vector.matrixconstuctor.md) | MatrixConstuctor Contractor parameters for creating a Matrix (beta) |
+|  [MatrixConstuctor](./matrix-from-vector.matrixconstuctor.md) | Parameters for creating a Matrix. Used by . (beta) |
 |  [PixelPosition](./matrix-from-vector.pixelposition.md) | PixelPositions An array of pixel numbers and their coordinates (beta) |
 

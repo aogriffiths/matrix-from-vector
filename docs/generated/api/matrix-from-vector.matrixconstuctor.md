@@ -4,7 +4,7 @@
 
 ## MatrixConstuctor interface
 
-MatrixConstuctor Contractor parameters for creating a Matrix (beta)
+Parameters for creating a Matrix. Used by . (beta)
 
 <b>Signature:</b>
 
