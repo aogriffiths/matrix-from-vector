@@ -4,6 +4,8 @@
 
 ## Matrix.isBtmStart() method
 
+Returns whether this matrix has a pattern starting at the <b>bottom</b> (beta)
+
 <b>Signature:</b>
 
 ```typescript
@@ -12,4 +14,6 @@ isBtmStart(): boolean;
 <b>Returns:</b>
 
 boolean
+
+true or false
 

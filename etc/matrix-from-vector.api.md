@@ -7,38 +7,25 @@
 // @public
 export class Matrix {
     constructor(options: MatrixConstuctor);
-    // (undocumented)
     direction: StripDirection;
     get fullstrip_length(): number;
     getPixel(x: number, y: number): number;
-    // (undocumented)
     height: number;
-    // (undocumented)
     isBotomUp(): boolean;
-    // (undocumented)
     isBtmStart(): boolean;
-    // (undocumented)
     isLefStart(): boolean;
-    // (undocumented)
     isLeftRight(): boolean;
-    // (undocumented)
     isRightLeft(): boolean;
-    // (undocumented)
     isRitStart(): boolean;
-    // (undocumented)
     isTopDown(): boolean;
-    // (undocumented)
     isTopStart(): boolean;
-    // (undocumented)
     pattern: StripPattern;
     pixelPositions(): PixelPosition[];
-    // (undocumented)
     start_corner: StripStartCorner;
     get substrip_count(): number;
     set substrip_count(newV: number);
     get substrip_length(): number;
     set substrip_length(newV: number);
-    // (undocumented)
     width: number;
 }
 

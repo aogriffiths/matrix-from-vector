@@ -111,10 +111,26 @@ export interface PixelPosition{
  * @public
  */
 export class Matrix {
-    width: number
+    /**
+     * Height of the matrix
+     */
     height: number
+    /**
+     * Width of the matrix
+     */
+    width: number
+    /**
+     * Matrix pattern
+     */
     pattern: StripPattern
+    /**
+     * The corner of the matrix where the vector starts
+     */
     start_corner: StripStartCorner
+    /**
+     * The initial direction the vector travels from the start corner across
+     * the natrix
+     */
     direction: StripDirection
 
     /**
@@ -162,7 +178,7 @@ export class Matrix {
     }
 
     /**
-     * Gets the full strip length for this matrix. Can not be set directly.
+     * The full strip length for this matrix. Can not be set directly.
      * calculated based on the width and height of the matrix.
      * (beta)
      * @public
@@ -172,7 +188,7 @@ export class Matrix {
     }
 
     /**
-     * Gets or sets the sub strip length for this matrix. This will either be
+     * The sub strip length for this matrix. This will either be
      * the width or height of the matrix, depending on the strip direction.
      * (beta)
      * @public
@@ -207,17 +223,61 @@ export class Matrix {
         : (this.height = newV)
     }
 
-
-
-
+    /**
+     * Returns whether this matrix has a <b>top down</b> patterm
+     * (beta)
+     * @public
+     * @returns true or false
+     */
     isTopDown():   boolean {return this.isTopStart() && this.direction == StripDirection.X}
+    /**
+     * Returns whether this matrix has a <b>bottom up</b> pattern
+     * (beta)
+     * @public
+     * @returns true or false
+     */
     isBotomUp():   boolean {return this.isBtmStart() && this.direction == StripDirection.X}
+    /**
+     * Returns whether this matrix has a <b>left to right </b> pattern
+     * (beta)
+     * @public
+     * @returns true or false
+     */
     isLeftRight(): boolean {return this.isLefStart() && this.direction == StripDirection.Y}
+    /**
+     * Returns whether this matrix has a <b>right to left</b> pattern
+     * (beta)
+     * @public
+     * @returns true or false
+     */
     isRightLeft(): boolean {return this.isRitStart() && this.direction == StripDirection.Y}
-
+    /**
+     * Returns whether this matrix has a pattern starting at the <b>top</b>
+     * (beta)
+     * @public
+     * @returns true or false
+     */
     isTopStart():  boolean {return this.start_corner == StripStartCorner.TopLeft || this.start_corner == StripStartCorner.TopRight}
+    /**
+     * Returns whether this matrix has a pattern starting at the <b>bottom</b>
+     * (beta)
+     * @public
+     * @returns true or false
+     */
     isBtmStart():  boolean {return this.start_corner == StripStartCorner.BottomLeft || this.start_corner == StripStartCorner.BottomRight}
+    /**
+     * Returns whether this matrix has a pattern starting on the <b>left</b>
+     * (beta)
+     * @public
+     * @returns true or false
+     */
     isLefStart():  boolean {return this.start_corner == StripStartCorner.TopLeft || this.start_corner == StripStartCorner.BottomLeft}
+    /**
+     * Returns whether this matrix has a pattern starting on the <b>right</b>
+     * (beta)
+     * @public
+     * @returns true or false
+     */
     isRitStart():  boolean {return this.start_corner == StripStartCorner.TopRight || this.start_corner == StripStartCorner.BottomRight}
 
     /**

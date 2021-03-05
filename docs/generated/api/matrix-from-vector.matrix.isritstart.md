@@ -4,6 +4,8 @@
 
 ## Matrix.isRitStart() method
 
+Returns whether this matrix has a pattern starting on the <b>right</b> (beta)
+
 <b>Signature:</b>
 
 ```typescript
@@ -12,4 +14,6 @@ isRitStart(): boolean;
 <b>Returns:</b>
 
 boolean
+
+true or false
 

@@ -4,6 +4,8 @@
 
 ## Matrix.isTopDown() method
 
+Returns whether this matrix has a <b>top down</b> patterm (beta)
+
 <b>Signature:</b>
 
 ```typescript
@@ -12,4 +14,6 @@ isTopDown(): boolean;
 <b>Returns:</b>
 
 boolean
+
+true or false
 

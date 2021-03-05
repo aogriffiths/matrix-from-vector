@@ -4,7 +4,7 @@
 
 ## Matrix.fullstrip\_length property
 
-Gets the full strip length for this matrix. Can not be set directly. calculated based on the width and height of the matrix. (beta)
+The full strip length for this matrix. Can not be set directly. calculated based on the width and height of the matrix. (beta)
 
 <b>Signature:</b>
 

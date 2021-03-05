@@ -4,6 +4,8 @@
 
 ## Matrix.isLefStart() method
 
+Returns whether this matrix has a pattern starting on the <b>left</b> (beta)
+
 <b>Signature:</b>
 
 ```typescript
@@ -12,4 +14,6 @@ isLefStart(): boolean;
 <b>Returns:</b>
 
 boolean
+
+true or false
 

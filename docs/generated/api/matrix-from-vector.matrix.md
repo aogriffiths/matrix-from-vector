@@ -22,27 +22,27 @@ export declare class Matrix
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [direction](./matrix-from-vector.matrix.direction.md) |  | [StripDirection](./matrix-from-vector.stripdirection.md) |  |
-|  [fullstrip\_length](./matrix-from-vector.matrix.fullstrip_length.md) |  | number | Gets the full strip length for this matrix. Can not be set directly. calculated based on the width and height of the matrix. (beta) |
-|  [height](./matrix-from-vector.matrix.height.md) |  | number |  |
-|  [pattern](./matrix-from-vector.matrix.pattern.md) |  | [StripPattern](./matrix-from-vector.strippattern.md) |  |
-|  [start\_corner](./matrix-from-vector.matrix.start_corner.md) |  | [StripStartCorner](./matrix-from-vector.stripstartcorner.md) |  |
+|  [direction](./matrix-from-vector.matrix.direction.md) |  | [StripDirection](./matrix-from-vector.stripdirection.md) | The initial direction the vector travels from the start corner across the natrix |
+|  [fullstrip\_length](./matrix-from-vector.matrix.fullstrip_length.md) |  | number | The full strip length for this matrix. Can not be set directly. calculated based on the width and height of the matrix. (beta) |
+|  [height](./matrix-from-vector.matrix.height.md) |  | number | Height of the matrix |
+|  [pattern](./matrix-from-vector.matrix.pattern.md) |  | [StripPattern](./matrix-from-vector.strippattern.md) | Matrix pattern |
+|  [start\_corner](./matrix-from-vector.matrix.start_corner.md) |  | [StripStartCorner](./matrix-from-vector.stripstartcorner.md) | The corner of the matrix where the vector starts |
 |  [substrip\_count](./matrix-from-vector.matrix.substrip_count.md) |  | number | Gets or sets the sub strip count for this matrix. This will either be the width or height of the matrix, depending on the strip direction. (beta) |
-|  [substrip\_length](./matrix-from-vector.matrix.substrip_length.md) |  | number | Gets or sets the sub strip length for this matrix. This will either be the width or height of the matrix, depending on the strip direction. (beta) |
-|  [width](./matrix-from-vector.matrix.width.md) |  | number |  |
+|  [substrip\_length](./matrix-from-vector.matrix.substrip_length.md) |  | number | The sub strip length for this matrix. This will either be the width or height of the matrix, depending on the strip direction. (beta) |
+|  [width](./matrix-from-vector.matrix.width.md) |  | number | Width of the matrix |
 
 ## Methods
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
 |  [getPixel(x, y)](./matrix-from-vector.matrix.getpixel.md) |  | Return this 1D vector index of a pixel based on its 2D matrix coordinates (beta) |
-|  [isBotomUp()](./matrix-from-vector.matrix.isbotomup.md) |  |  |
-|  [isBtmStart()](./matrix-from-vector.matrix.isbtmstart.md) |  |  |
-|  [isLefStart()](./matrix-from-vector.matrix.islefstart.md) |  |  |
-|  [isLeftRight()](./matrix-from-vector.matrix.isleftright.md) |  |  |
-|  [isRightLeft()](./matrix-from-vector.matrix.isrightleft.md) |  |  |
-|  [isRitStart()](./matrix-from-vector.matrix.isritstart.md) |  |  |
-|  [isTopDown()](./matrix-from-vector.matrix.istopdown.md) |  |  |
-|  [isTopStart()](./matrix-from-vector.matrix.istopstart.md) |  |  |
+|  [isBotomUp()](./matrix-from-vector.matrix.isbotomup.md) |  | Returns whether this matrix has a <b>bottom up</b> pattern (beta) |
+|  [isBtmStart()](./matrix-from-vector.matrix.isbtmstart.md) |  | Returns whether this matrix has a pattern starting at the <b>bottom</b> (beta) |
+|  [isLefStart()](./matrix-from-vector.matrix.islefstart.md) |  | Returns whether this matrix has a pattern starting on the <b>left</b> (beta) |
+|  [isLeftRight()](./matrix-from-vector.matrix.isleftright.md) |  | Returns whether this matrix has a <b>left to right </b> pattern (beta) |
+|  [isRightLeft()](./matrix-from-vector.matrix.isrightleft.md) |  | Returns whether this matrix has a <b>right to left</b> pattern (beta) |
+|  [isRitStart()](./matrix-from-vector.matrix.isritstart.md) |  | Returns whether this matrix has a pattern starting on the <b>right</b> (beta) |
+|  [isTopDown()](./matrix-from-vector.matrix.istopdown.md) |  | Returns whether this matrix has a <b>top down</b> patterm (beta) |
+|  [isTopStart()](./matrix-from-vector.matrix.istopstart.md) |  | Returns whether this matrix has a pattern starting at the <b>top</b> (beta) |
 |  [pixelPositions()](./matrix-from-vector.matrix.pixelpositions.md) |  | Return all pixel positions for the matrix (beta) |
 

@@ -4,6 +4,8 @@
 
 ## Matrix.direction property
 
+The initial direction the vector travels from the start corner across the natrix
+
 <b>Signature:</b>
 
 ```typescript

@@ -4,6 +4,8 @@
 
 ## Matrix.width property
 
+Width of the matrix
+
 <b>Signature:</b>
 
 ```typescript

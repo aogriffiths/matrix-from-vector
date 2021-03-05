@@ -4,6 +4,8 @@
 
 ## Matrix.isRightLeft() method
 
+Returns whether this matrix has a <b>right to left</b> pattern (beta)
+
 <b>Signature:</b>
 
 ```typescript
@@ -12,4 +14,6 @@ isRightLeft(): boolean;
 <b>Returns:</b>
 
 boolean
+
+true or false
 

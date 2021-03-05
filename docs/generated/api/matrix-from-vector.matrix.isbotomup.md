@@ -4,6 +4,8 @@
 
 ## Matrix.isBotomUp() method
 
+Returns whether this matrix has a <b>bottom up</b> pattern (beta)
+
 <b>Signature:</b>
 
 ```typescript
@@ -12,4 +14,6 @@ isBotomUp(): boolean;
 <b>Returns:</b>
 
 boolean
+
+true or false
 

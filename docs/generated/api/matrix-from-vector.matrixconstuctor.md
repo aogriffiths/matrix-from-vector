@@ -17,8 +17,8 @@ export interface MatrixConstuctor
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [direction?](./matrix-from-vector.matrixconstuctor.direction.md) | [StripDirection](./matrix-from-vector.stripdirection.md) | <i>(Optional)</i> The initial direction the vector travels from the start corner across the natrix . Default <code>StripDirection.X</code> |
-|  [height?](./matrix-from-vector.matrixconstuctor.height.md) | number | <i>(Optional)</i> Height of the matrix. Default 0. |
+|  [height?](./matrix-from-vector.matrixconstuctor.height.md) | number | <i>(Optional)</i> Height of the matrix. Default <code>0</code>. |
 |  [pattern?](./matrix-from-vector.matrixconstuctor.pattern.md) | [StripPattern](./matrix-from-vector.strippattern.md) | <i>(Optional)</i> Matrix pattern. Default <code>StripPattern.zigzag</code> |
 |  [start\_corner?](./matrix-from-vector.matrixconstuctor.start_corner.md) | [StripStartCorner](./matrix-from-vector.stripstartcorner.md) | <i>(Optional)</i> The corner of the matrix where the vector starts. Default <code>StripStartCorner.BottomLeft</code> |
-|  [width?](./matrix-from-vector.matrixconstuctor.width.md) | number | <i>(Optional)</i> Width of the matrix. Default 0. |
+|  [width?](./matrix-from-vector.matrixconstuctor.width.md) | number | <i>(Optional)</i> Width of the matrix. Default <code>0</code>. |
 

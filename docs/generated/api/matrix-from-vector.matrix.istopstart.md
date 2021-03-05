@@ -4,6 +4,8 @@
 
 ## Matrix.isTopStart() method
 
+Returns whether this matrix has a pattern starting at the <b>top</b> (beta)
+
 <b>Signature:</b>
 
 ```typescript
@@ -12,4 +14,6 @@ isTopStart(): boolean;
 <b>Returns:</b>
 
 boolean
+
+true or false
 

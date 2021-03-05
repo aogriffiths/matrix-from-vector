@@ -4,6 +4,8 @@
 
 ## Matrix.height property
 
+Height of the matrix
+
 <b>Signature:</b>
 
 ```typescript

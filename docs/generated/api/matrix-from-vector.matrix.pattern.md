@@ -4,6 +4,8 @@
 
 ## Matrix.pattern property
 
+Matrix pattern
+
 <b>Signature:</b>
 
 ```typescript

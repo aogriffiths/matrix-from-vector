@@ -4,6 +4,8 @@
 
 ## Matrix.start\_corner property
 
+The corner of the matrix where the vector starts
+
 <b>Signature:</b>
 
 ```typescript
