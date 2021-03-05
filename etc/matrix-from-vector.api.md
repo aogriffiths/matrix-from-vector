@@ -40,14 +40,10 @@ export interface MatrixConstuctor {
 
 // @public
 export enum MatrixCorner {
-    // (undocumented)
-    BottomLeft = 3,
-    // (undocumented)
-    BottomRight = 4,
-    // (undocumented)
-    TopLeft = 1,
-    // (undocumented)
-    TopRight = 2
+    BottomLeft = 0,
+    BottomRight = 1,
+    TopLeft = 2,
+    TopRight = 3
 }
 
 // @public
@@ -62,14 +58,14 @@ export interface PixelPosition {
 
 // @public
 export enum VectorDirection {
-    X = 1,
-    Y = 2
+    X = 0,
+    Y = 1
 }
 
 // @public
 export enum VectorPattern {
-    loop = 2,
-    zigzag = 1
+    loop = 1,
+    zigzag = 0
 }
 
 

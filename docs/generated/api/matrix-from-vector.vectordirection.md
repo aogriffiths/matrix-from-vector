@@ -16,6 +16,6 @@ export declare enum VectorDirection
 
 |  Member | Value | Description |
 |  --- | --- | --- |
-|  X | <code>1</code> | In the X axis (left / right) |
-|  Y | <code>2</code> | In the Y axis (up / down) |
+|  X | <code>0</code> | In the X axis (left / right) |
+|  Y | <code>1</code> | In the Y axis (up / down) |
 

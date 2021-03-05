@@ -19,14 +19,32 @@ function* generateCoordinates(w: number, h: number) {
  * @public
  */
 export enum MatrixCorner{
-  //% block="Top Left"
-  TopLeft=1,
-  //% block="Top Right"
-  TopRight=2,
-  //% block="Bottom Left"
-  BottomLeft=3,
-  //% block="Bottom Right"
-  BottomRight=4,
+  /**
+   * Bottom left (x=0, y=0) (default vector start corner)
+   * @public
+   */
+  BottomLeft,
+
+  /**
+   * Bottom right (x=max, y=0)
+   * (beta)
+   * @public
+   */
+  BottomRight,
+
+  /**
+   * Top left (x=0, y=max)
+   * (beta)
+   * @public
+   */
+  TopLeft,
+
+  /**
+   * Top right (x=max, y=max)
+   * (beta)
+   * @public
+   */
+  TopRight
 }
 
 /**
@@ -38,11 +56,11 @@ export enum VectorDirection{
   /**
    * In the X axis (left / right)
    */
-  X=1,
+  X,
   /**
    * In the Y axis (up / down)
    */
-  Y=2,
+  Y,
 }
 
 /**
@@ -54,11 +72,11 @@ export enum VectorPattern{
   /**
    * The direction of the vector will alternate (forwards and reverse with respect the initial vector direction)
    */
-  zigzag=1,
+  zigzag,
   /**
    * The direction of the vector will remain the same (always the same as the initial vector direction)
    */
-  loop=2,
+  loop,
 }
 
 /**

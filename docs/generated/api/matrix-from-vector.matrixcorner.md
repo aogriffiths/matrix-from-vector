@@ -16,8 +16,8 @@ export declare enum MatrixCorner
 
 |  Member | Value | Description |
 |  --- | --- | --- |
-|  BottomLeft | <code>3</code> |  |
-|  BottomRight | <code>4</code> |  |
-|  TopLeft | <code>1</code> |  |
-|  TopRight | <code>2</code> |  |
+|  BottomLeft | <code>0</code> | Bottom left (x=0, y=0) (default vector start corner) |
+|  BottomRight | <code>1</code> | Bottom right (x=max, y=0) (beta) |
+|  TopLeft | <code>2</code> | Top left (x=0, y=max) (beta) |
+|  TopRight | <code>3</code> | Top right (x=max, y=max) (beta) |
 

@@ -16,6 +16,6 @@ export declare enum VectorPattern
 
 |  Member | Value | Description |
 |  --- | --- | --- |
-|  loop | <code>2</code> | The direction of the vector will remain the same (always the same as the initial vector direction) |
-|  zigzag | <code>1</code> | The direction of the vector will alternate (forwards and reverse with respect the initial vector direction) |
+|  loop | <code>1</code> | The direction of the vector will remain the same (always the same as the initial vector direction) |
+|  zigzag | <code>0</code> | The direction of the vector will alternate (forwards and reverse with respect the initial vector direction) |
 
