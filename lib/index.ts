@@ -141,9 +141,9 @@ export class Matrix {
      * @example
      * A 3x4 example using the defaults. See the layout <a href="../layouts/layouts.md">here</a> with:
      * <ul>
-     * <li> pattern: `zigzag`</li>
      * <li> start_corner `BottomLeft`</li>
      * <li> direction: `X`</li>
+     * <li> pattern: `zigzag`</li>
      * </ul>
      * ```
      * const matrix = new Matrix({
@@ -155,9 +155,9 @@ export class Matrix {
      * An example with all options provided.
      * See the layout See the layout <a href="../layouts/layouts.md">here</a> with:
      * <ul>
-     * <li> pattern: `loop`</li>
      * <li> start_corner `TopRight`</li>
      * <li> direction: `Y`</li>
+     * <li> pattern: `loop`</li>
      * </ul>
      * ```
      * const matrix = new Matrix({
