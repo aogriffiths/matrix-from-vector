@@ -16,9 +16,9 @@ export interface MatrixConstuctor
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [direction?](./matrix-from-vector.matrixconstuctor.direction.md) | [StripDirection](./matrix-from-vector.stripdirection.md) | <i>(Optional)</i> The initial direction the vector travels from the start corner across the matrix . Default <code>StripDirection.X</code> |
+|  [direction?](./matrix-from-vector.matrixconstuctor.direction.md) | [VectorDirection](./matrix-from-vector.vectordirection.md) | <i>(Optional)</i> The initial direction the vector travels from the start corner across the matrix . Default <code>VectorDirection.X</code> |
 |  [height?](./matrix-from-vector.matrixconstuctor.height.md) | number | <i>(Optional)</i> Height of the matrix. Default <code>0</code>. |
-|  [pattern?](./matrix-from-vector.matrixconstuctor.pattern.md) | [StripPattern](./matrix-from-vector.strippattern.md) | <i>(Optional)</i> Matrix pattern. Default <code>StripPattern.zigzag</code> |
-|  [start\_corner?](./matrix-from-vector.matrixconstuctor.start_corner.md) | [StripStartCorner](./matrix-from-vector.stripstartcorner.md) | <i>(Optional)</i> The corner of the matrix where the vector starts. Default <code>StripStartCorner.BottomLeft</code> |
+|  [pattern?](./matrix-from-vector.matrixconstuctor.pattern.md) | [VectorPattern](./matrix-from-vector.vectorpattern.md) | <i>(Optional)</i> Matrix pattern. Default <code>VectorPattern.zigzag</code> |
+|  [startCorner?](./matrix-from-vector.matrixconstuctor.startcorner.md) | [MatrixCorner](./matrix-from-vector.matrixcorner.md) | <i>(Optional)</i> The corner of the matrix where the vector starts. Default <code>VectorStartCorner.BottomLeft</code> |
 |  [width?](./matrix-from-vector.matrixconstuctor.width.md) | number | <i>(Optional)</i> Width of the matrix. Default <code>0</code>. |
 

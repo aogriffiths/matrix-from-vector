@@ -22,11 +22,11 @@ export declare class Matrix
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [direction](./matrix-from-vector.matrix.direction.md) |  | [StripDirection](./matrix-from-vector.stripdirection.md) | The initial direction the vector travels from the start corner across the matrix |
+|  [direction](./matrix-from-vector.matrix.direction.md) |  | [VectorDirection](./matrix-from-vector.vectordirection.md) | The initial direction the vector travels from the start corner across the matrix |
 |  [fullstrip\_length](./matrix-from-vector.matrix.fullstrip_length.md) |  | number | The full strip length for this matrix. Can not be set directly. calculated based on the width and height of the matrix. (beta) |
 |  [height](./matrix-from-vector.matrix.height.md) |  | number | Height of the matrix |
-|  [pattern](./matrix-from-vector.matrix.pattern.md) |  | [StripPattern](./matrix-from-vector.strippattern.md) | Matrix pattern |
-|  [start\_corner](./matrix-from-vector.matrix.start_corner.md) |  | [StripStartCorner](./matrix-from-vector.stripstartcorner.md) | The corner of the matrix where the vector starts |
+|  [pattern](./matrix-from-vector.matrix.pattern.md) |  | [VectorPattern](./matrix-from-vector.vectorpattern.md) | The repeating partern the vector follows to create the matrix |
+|  [start\_corner](./matrix-from-vector.matrix.start_corner.md) |  | [MatrixCorner](./matrix-from-vector.matrixcorner.md) | The corner of the matrix where the vector starts |
 |  [substrip\_count](./matrix-from-vector.matrix.substrip_count.md) |  | number | Gets or sets the sub strip count for this matrix. This will either be the width or height of the matrix, depending on the strip direction. (beta) |
 |  [substrip\_length](./matrix-from-vector.matrix.substrip_length.md) |  | number | The sub strip length for this matrix. This will either be the width or height of the matrix, depending on the strip direction. (beta) |
 |  [width](./matrix-from-vector.matrix.width.md) |  | number | Width of the matrix |

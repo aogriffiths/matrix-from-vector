@@ -4,10 +4,10 @@
 
 ## MatrixConstuctor.direction property
 
-The initial direction the vector travels from the start corner across the matrix . Default `StripDirection.X`
+The initial direction the vector travels from the start corner across the matrix . Default `VectorDirection.X`
 
 <b>Signature:</b>
 
 ```typescript
-direction?: StripDirection;
+direction?: VectorDirection;
 ```

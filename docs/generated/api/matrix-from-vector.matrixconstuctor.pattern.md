@@ -4,10 +4,10 @@
 
 ## MatrixConstuctor.pattern property
 
-Matrix pattern. Default `StripPattern.zigzag`
+Matrix pattern. Default `VectorPattern.zigzag`
 
 <b>Signature:</b>
 
 ```typescript
-pattern?: StripPattern;
+pattern?: VectorPattern;
 ```

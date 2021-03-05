@@ -4,10 +4,10 @@
 
 ## Matrix.pattern property
 
-Matrix pattern
+The repeating partern the vector follows to create the matrix
 
 <b>Signature:</b>
 
 ```typescript
-pattern: StripPattern;
+pattern: VectorPattern;
 ```

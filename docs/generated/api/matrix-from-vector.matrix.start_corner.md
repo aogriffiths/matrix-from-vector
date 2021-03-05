@@ -9,5 +9,5 @@ The corner of the matrix where the vector starts
 <b>Signature:</b>
 
 ```typescript
-start_corner: StripStartCorner;
+start_corner: MatrixCorner;
 ```

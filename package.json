@@ -5,12 +5,13 @@
   "main": "dist/index.js",
   "types": "dist/index.d.js",
   "scripts": {
+    "build:all": "npm run test && npm run build:tsc && npm run build:api-extract && npm run build:api-docs && npm run build:layout-docs",
     "build:tsc": "tsc",
     "build:tsc-watch": "tsc -w",
     "build:api-extract": "mkdir -p etc; api-extractor run --local --verbose",
     "build:api-docs": "api-documenter markdown --input-folder temp --output-folder docs/generated/api",
     "build:layout-docs": "node dist/generatelayouts.js",
-    "prepublish": "npm run build",
+    "prepublish": "npm run build:all",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'"
   },
   "author": "Adam Griffiths",

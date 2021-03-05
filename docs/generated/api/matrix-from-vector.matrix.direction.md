@@ -9,5 +9,5 @@ The initial direction the vector travels from the start corner across the matrix
 <b>Signature:</b>
 
 ```typescript
-direction: StripDirection;
+direction: VectorDirection;
 ```

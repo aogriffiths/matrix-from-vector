@@ -38,9 +38,9 @@ An example with all options provided. See the layout See the layout <a href="../
 const matrix = new Matrix({
   height: 10,
   width: 15,
-  pattern: StripPattern.loop,
-  start_corner: StripStartCorner.TopRight,
-  direction: StripDirection.Y,
+  pattern: VectorPattern.loop,
+  start_corner: VectorStartCorner.TopRight,
+  direction: VectorDirection.Y,
 })
 
 ```

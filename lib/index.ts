@@ -14,12 +14,11 @@ function* generateCoordinates(w: number, h: number) {
 }
 
 /**
- * StripPattern
- * All possible strip start corners
+ * The four corners of the matrix. The vector must start in one of these corners.
  * (beta)
  * @public
  */
-export enum StripStartCorner{
+export enum MatrixCorner{
   //% block="Top Left"
   TopLeft=1,
   //% block="Top Right"
@@ -31,29 +30,35 @@ export enum StripStartCorner{
 }
 
 /**
- * StripPattern
- * All possible strip patterns
+ * The directions the vector can travel across the matrix
  * (beta)
  * @public
  */
-export enum StripPattern{
-  //% block="Zig Zaging"
-  zigzag=1,
-  //% block="Looping"
-  loop=2,
+export enum VectorDirection{
+  /**
+   * In the X axis (left / right)
+   */
+  X=1,
+  /**
+   * In the Y axis (up / down)
+   */
+  Y=2,
 }
 
 /**
- * StripDirection
- * All possible strip directions
+ * The possible vector patterns
  * (beta)
  * @public
  */
-export enum StripDirection{
-  //% block="Zig Zaging"
-  X=1,
-  //% block="Looping"
-  Y=2,
+export enum VectorPattern{
+  /**
+   * The direction of the vector will alternate (forwards and reverse with respect the initial vector direction)
+   */
+  zigzag=1,
+  /**
+   * The direction of the vector will remain the same (always the same as the initial vector direction)
+   */
+  loop=2,
 }
 
 /**
@@ -72,18 +77,18 @@ export interface MatrixConstuctor {
    */
   width?: number
   /**
-   * Matrix pattern. Default `StripPattern.zigzag`
+   * The corner of the matrix where the vector starts. Default `VectorStartCorner.BottomLeft`
    */
-  pattern?: StripPattern
-  /**
-   * The corner of the matrix where the vector starts. Default `StripStartCorner.BottomLeft`
-   */
-  start_corner?: StripStartCorner
+  startCorner?: MatrixCorner
   /**
    * The initial direction the vector travels from the start corner across
-   * the matrix . Default `StripDirection.X`
+   * the matrix . Default `VectorDirection.X`
    */
-  direction?: StripDirection
+  direction?: VectorDirection
+  /**
+   * Matrix pattern. Default `VectorPattern.zigzag`
+   */
+  pattern?: VectorPattern
 }
 
 /**
@@ -120,18 +125,18 @@ export class Matrix {
      */
     width: number
     /**
-     * Matrix pattern
-     */
-    pattern: StripPattern
-    /**
      * The corner of the matrix where the vector starts
      */
-    start_corner: StripStartCorner
+    start_corner: MatrixCorner
     /**
      * The initial direction the vector travels from the start corner across
      * the matrix
      */
-    direction: StripDirection
+    direction: VectorDirection
+    /**
+     * The repeating partern the vector follows to create the matrix
+     */
+    pattern: VectorPattern
 
     /**
      * Creates a new Matrix
@@ -163,18 +168,18 @@ export class Matrix {
      * const matrix = new Matrix({
      *   height: 10,
      *   width: 15,
-     *   pattern: StripPattern.loop,
-     *   start_corner: StripStartCorner.TopRight,
-     *   direction: StripDirection.Y,
+     *   pattern: VectorPattern.loop,
+     *   start_corner: VectorStartCorner.TopRight,
+     *   direction: VectorDirection.Y,
      * })
      * ```
      */
     constructor(options: MatrixConstuctor) {
       this.width = options.width || 0
       this.height = options.height || 0
-      this.pattern = options.pattern || StripPattern.zigzag
-      this.start_corner = options.start_corner || StripStartCorner.BottomLeft
-      this.direction = options.direction || StripDirection.X
+      this.start_corner = options.startCorner || MatrixCorner.BottomLeft
+      this.direction = options.direction || VectorDirection.X
+      this.pattern = options.pattern || VectorPattern.zigzag
     }
 
     /**
@@ -194,13 +199,13 @@ export class Matrix {
      * @public
      */
     get substrip_length(): number {
-      return this.direction == StripDirection.X
+      return this.direction == VectorDirection.X
         ? this.width
         : this.height
     }
     // NOTE: For API Extractor don't write documentation for the setter.
     set substrip_length(newV: number) {
-      this.direction == StripDirection.X
+      this.direction == VectorDirection.X
         ? (this.width = newV)
         : (this.height = newV)
     }
@@ -212,13 +217,13 @@ export class Matrix {
      * @public
      */
     get substrip_count(): number {
-      return this.direction == StripDirection.X
+      return this.direction == VectorDirection.X
         ? this.height
         : this.width
     }
     // NOTE: For API Extractor don't write documentation for the setter.
     set substrip_count(newV: number) {
-      this.direction == StripDirection.X
+      this.direction == VectorDirection.X
         ? (this.width = newV)
         : (this.height = newV)
     }
@@ -229,56 +234,56 @@ export class Matrix {
      * @public
      * @returns true or false
      */
-    isTopDown():   boolean {return this.isTopStart() && this.direction == StripDirection.X}
+    isTopDown():   boolean {return this.isTopStart() && this.direction == VectorDirection.X}
     /**
      * Returns whether this matrix has a <b>bottom up</b> pattern
      * (beta)
      * @public
      * @returns true or false
      */
-    isBotomUp():   boolean {return this.isBtmStart() && this.direction == StripDirection.X}
+    isBotomUp():   boolean {return this.isBtmStart() && this.direction == VectorDirection.X}
     /**
      * Returns whether this matrix has a <b>left to right </b> pattern
      * (beta)
      * @public
      * @returns true or false
      */
-    isLeftRight(): boolean {return this.isLefStart() && this.direction == StripDirection.Y}
+    isLeftRight(): boolean {return this.isLefStart() && this.direction == VectorDirection.Y}
     /**
      * Returns whether this matrix has a <b>right to left</b> pattern
      * (beta)
      * @public
      * @returns true or false
      */
-    isRightLeft(): boolean {return this.isRitStart() && this.direction == StripDirection.Y}
+    isRightLeft(): boolean {return this.isRitStart() && this.direction == VectorDirection.Y}
     /**
      * Returns whether this matrix has a pattern starting at the <b>top</b>
      * (beta)
      * @public
      * @returns true or false
      */
-    isTopStart():  boolean {return this.start_corner == StripStartCorner.TopLeft || this.start_corner == StripStartCorner.TopRight}
+    isTopStart():  boolean {return this.start_corner == MatrixCorner.TopLeft || this.start_corner == MatrixCorner.TopRight}
     /**
      * Returns whether this matrix has a pattern starting at the <b>bottom</b>
      * (beta)
      * @public
      * @returns true or false
      */
-    isBtmStart():  boolean {return this.start_corner == StripStartCorner.BottomLeft || this.start_corner == StripStartCorner.BottomRight}
+    isBtmStart():  boolean {return this.start_corner == MatrixCorner.BottomLeft || this.start_corner == MatrixCorner.BottomRight}
     /**
      * Returns whether this matrix has a pattern starting on the <b>left</b>
      * (beta)
      * @public
      * @returns true or false
      */
-    isLefStart():  boolean {return this.start_corner == StripStartCorner.TopLeft || this.start_corner == StripStartCorner.BottomLeft}
+    isLefStart():  boolean {return this.start_corner == MatrixCorner.TopLeft || this.start_corner == MatrixCorner.BottomLeft}
     /**
      * Returns whether this matrix has a pattern starting on the <b>right</b>
      * (beta)
      * @public
      * @returns true or false
      */
-    isRitStart():  boolean {return this.start_corner == StripStartCorner.TopRight || this.start_corner == StripStartCorner.BottomRight}
+    isRitStart():  boolean {return this.start_corner == MatrixCorner.TopRight || this.start_corner == MatrixCorner.BottomRight}
 
     /**
      * Return this 1D vector index of a pixel based on its 2D matrix coordinates
@@ -290,13 +295,13 @@ export class Matrix {
      */
     getPixel(x: number, y: number): number{
       //Correct for start corner (using negative coordinates for now)
-      if ( this.start_corner == StripStartCorner.TopLeft ||
-           this.start_corner == StripStartCorner.TopRight ) {
+      if ( this.start_corner == MatrixCorner.TopLeft ||
+           this.start_corner == MatrixCorner.TopRight ) {
         y *= -1
         y += -1
       }
-      if ( this.start_corner == StripStartCorner.BottomRight ||
-           this.start_corner == StripStartCorner.TopRight ) {
+      if ( this.start_corner == MatrixCorner.BottomRight ||
+           this.start_corner == MatrixCorner.TopRight ) {
         x *= -1
         x += -1
       }
@@ -308,7 +313,7 @@ export class Matrix {
       }
 
       //Correct for direction
-      if(this.direction === StripDirection.Y){
+      if(this.direction === VectorDirection.Y){
         res = {
           full: x,
           rem: y
@@ -329,7 +334,7 @@ export class Matrix {
       }
 
       //Correct for zigzag
-      if(this.pattern === StripPattern.zigzag){
+      if(this.pattern === VectorPattern.zigzag){
         if((res.full % 2) != 0){
           res.rem = this.substrip_length - res.rem - 1
         }

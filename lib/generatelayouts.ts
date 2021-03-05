@@ -34,7 +34,7 @@ allLayouts.pattern?.forEach(function(pattern){
         height,
         direction: direction.enum,
         pattern: pattern.enum,
-        start_corner: start_corner.enum
+        startCorner: start_corner.enum
       })
       start_corner.imageFile = `${pattern.name}_${direction.name}_${start_corner.name}.svg`
       var svg = buildSVGofMatrix(amatrix)

@@ -14,9 +14,9 @@
 
 |  Enumeration | Description |
 |  --- | --- |
-|  [StripDirection](./matrix-from-vector.stripdirection.md) | StripDirection All possible strip directions (beta) |
-|  [StripPattern](./matrix-from-vector.strippattern.md) | StripPattern All possible strip patterns (beta) |
-|  [StripStartCorner](./matrix-from-vector.stripstartcorner.md) | StripPattern All possible strip start corners (beta) |
+|  [MatrixCorner](./matrix-from-vector.matrixcorner.md) | The four corners of the matrix. The vector must start in one of these corners. (beta) |
+|  [VectorDirection](./matrix-from-vector.vectordirection.md) | The directions the vector can travel across the matrix (beta) |
+|  [VectorPattern](./matrix-from-vector.vectorpattern.md) | The possible vector patterns (beta) |
 
 ## Interfaces
 

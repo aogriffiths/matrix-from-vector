@@ -7,7 +7,7 @@
 // @public
 export class Matrix {
     constructor(options: MatrixConstuctor);
-    direction: StripDirection;
+    direction: VectorDirection;
     get fullstrip_length(): number;
     getPixel(x: number, y: number): number;
     height: number;
@@ -19,9 +19,9 @@ export class Matrix {
     isRitStart(): boolean;
     isTopDown(): boolean;
     isTopStart(): boolean;
-    pattern: StripPattern;
+    pattern: VectorPattern;
     pixelPositions(): PixelPosition[];
-    start_corner: StripStartCorner;
+    start_corner: MatrixCorner;
     get substrip_count(): number;
     set substrip_count(newV: number);
     get substrip_length(): number;
@@ -31,11 +31,23 @@ export class Matrix {
 
 // @public
 export interface MatrixConstuctor {
-    direction?: StripDirection;
+    direction?: VectorDirection;
     height?: number;
-    pattern?: StripPattern;
-    start_corner?: StripStartCorner;
+    pattern?: VectorPattern;
+    startCorner?: MatrixCorner;
     width?: number;
+}
+
+// @public
+export enum MatrixCorner {
+    // (undocumented)
+    BottomLeft = 3,
+    // (undocumented)
+    BottomRight = 4,
+    // (undocumented)
+    TopLeft = 1,
+    // (undocumented)
+    TopRight = 2
 }
 
 // @public
@@ -49,31 +61,15 @@ export interface PixelPosition {
 }
 
 // @public
-export enum StripDirection {
-    // (undocumented)
+export enum VectorDirection {
     X = 1,
-    // (undocumented)
     Y = 2
 }
 
 // @public
-export enum StripPattern {
-    // (undocumented)
+export enum VectorPattern {
     loop = 2,
-    // (undocumented)
     zigzag = 1
-}
-
-// @public
-export enum StripStartCorner {
-    // (undocumented)
-    BottomLeft = 3,
-    // (undocumented)
-    BottomRight = 4,
-    // (undocumented)
-    TopLeft = 1,
-    // (undocumented)
-    TopRight = 2
 }
 
 
