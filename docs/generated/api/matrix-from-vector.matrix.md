@@ -4,6 +4,8 @@
 
 ## Matrix class
 
+A matrix based on a vector (beta)
+
 <b>Signature:</b>
 
 ```typescript
@@ -14,26 +16,26 @@ export declare class Matrix
 
 |  Constructor | Modifiers | Description |
 |  --- | --- | --- |
-|  [(constructor)({ height, width, pattern, start\_corner, direction })](./matrix-from-vector.matrix._constructor_.md) |  | Constructs a new instance of the <code>Matrix</code> class |
+|  [(constructor)(options)](./matrix-from-vector.matrix._constructor_.md) |  | Creates a new Matrix (beta) |
 
 ## Properties
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [direction](./matrix-from-vector.matrix.direction.md) |  | [stripDirection](./matrix-from-vector.stripdirection.md) |  |
-|  [fullstrip\_length](./matrix-from-vector.matrix.fullstrip_length.md) |  | number |  |
+|  [direction](./matrix-from-vector.matrix.direction.md) |  | [StripDirection](./matrix-from-vector.stripdirection.md) |  |
+|  [fullstrip\_length](./matrix-from-vector.matrix.fullstrip_length.md) |  | number | Gets the full strip length for this matrix. Can not be set directly. calculated based on the width and height of the matrix. (beta) |
 |  [height](./matrix-from-vector.matrix.height.md) |  | number |  |
-|  [pattern](./matrix-from-vector.matrix.pattern.md) |  | [stripPattern](./matrix-from-vector.strippattern.md) |  |
-|  [start\_corner](./matrix-from-vector.matrix.start_corner.md) |  | [startCorner](./matrix-from-vector.startcorner.md) |  |
-|  [substrip\_count](./matrix-from-vector.matrix.substrip_count.md) |  | number |  |
-|  [substrip\_length](./matrix-from-vector.matrix.substrip_length.md) |  | number |  |
+|  [pattern](./matrix-from-vector.matrix.pattern.md) |  | [StripPattern](./matrix-from-vector.strippattern.md) |  |
+|  [start\_corner](./matrix-from-vector.matrix.start_corner.md) |  | [StripStartCorner](./matrix-from-vector.stripstartcorner.md) |  |
+|  [substrip\_count](./matrix-from-vector.matrix.substrip_count.md) |  | number | Gets or sets the sub strip count for this matrix. This will either be the width or height of the matrix, depending on the strip direction. (beta) |
+|  [substrip\_length](./matrix-from-vector.matrix.substrip_length.md) |  | number | Gets or sets the sub strip length for this matrix. This will either be the width or height of the matrix, depending on the strip direction. (beta) |
 |  [width](./matrix-from-vector.matrix.width.md) |  | number |  |
 
 ## Methods
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
-|  [getPixel(x, y)](./matrix-from-vector.matrix.getpixel.md) |  |  |
+|  [getPixel(x, y)](./matrix-from-vector.matrix.getpixel.md) |  | Return this 1D vector index of a pixel based on its 2D matrix coordinates (beta) |
 |  [isBotomUp()](./matrix-from-vector.matrix.isbotomup.md) |  |  |
 |  [isBtmStart()](./matrix-from-vector.matrix.isbtmstart.md) |  |  |
 |  [isLefStart()](./matrix-from-vector.matrix.islefstart.md) |  |  |
@@ -42,5 +44,5 @@ export declare class Matrix
 |  [isRitStart()](./matrix-from-vector.matrix.isritstart.md) |  |  |
 |  [isTopDown()](./matrix-from-vector.matrix.istopdown.md) |  |  |
 |  [isTopStart()](./matrix-from-vector.matrix.istopstart.md) |  |  |
-|  [pixelPositions()](./matrix-from-vector.matrix.pixelpositions.md) |  | get a list of pixel positions for this marix |
+|  [pixelPositions()](./matrix-from-vector.matrix.pixelpositions.md) |  | Return all pixel positions for the matrix (beta) |
 

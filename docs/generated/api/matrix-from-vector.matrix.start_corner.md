@@ -7,5 +7,5 @@
 <b>Signature:</b>
 
 ```typescript
-start_corner: startCorner;
+start_corner: StripStartCorner;
 ```

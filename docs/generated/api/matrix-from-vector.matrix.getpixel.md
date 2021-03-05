@@ -4,6 +4,8 @@
 
 ## Matrix.getPixel() method
 
+Return this 1D vector index of a pixel based on its 2D matrix coordinates (beta)
+
 <b>Signature:</b>
 
 ```typescript
@@ -14,10 +16,12 @@ getPixel(x: number, y: number): number;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  x | number |  |
-|  y | number |  |
+|  x | number | the x coordinate of the pixel |
+|  y | number | the y coordinate of the pixel |
 
 <b>Returns:</b>
 
 number
+
+- the pixel number on the strip that makes up this matrix
 

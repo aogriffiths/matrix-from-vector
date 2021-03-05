@@ -4,14 +4,12 @@
 
 ```ts
 
-// @public (undocumented)
+// @public
 export class Matrix {
-    constructor({ height, width, pattern, start_corner, direction }: MatrixConstuctor);
+    constructor(options: MatrixConstuctor);
     // (undocumented)
-    direction: stripDirection;
-    // (undocumented)
+    direction: StripDirection;
     get fullstrip_length(): number;
-    // (undocumented)
     getPixel(x: number, y: number): number;
     // (undocumented)
     height: number;
@@ -32,35 +30,33 @@ export class Matrix {
     // (undocumented)
     isTopStart(): boolean;
     // (undocumented)
-    pattern: stripPattern;
+    pattern: StripPattern;
     pixelPositions(): PixelPosition[];
     // (undocumented)
-    start_corner: startCorner;
-    // (undocumented)
+    start_corner: StripStartCorner;
     get substrip_count(): number;
     set substrip_count(newV: number);
-    // (undocumented)
     get substrip_length(): number;
     set substrip_length(newV: number);
     // (undocumented)
     width: number;
 }
 
-// @public (undocumented)
+// @public
 export interface MatrixConstuctor {
     // (undocumented)
-    direction?: stripDirection;
+    direction?: StripDirection;
     // (undocumented)
     height?: number;
     // (undocumented)
-    pattern?: stripPattern;
+    pattern?: StripPattern;
     // (undocumented)
-    start_corner?: startCorner;
+    start_corner?: StripStartCorner;
     // (undocumented)
     width?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface PixelPosition {
     // (undocumented)
     n: number;
@@ -70,8 +66,24 @@ export interface PixelPosition {
     y: number;
 }
 
-// @public (undocumented)
-export enum startCorner {
+// @public
+export enum StripDirection {
+    // (undocumented)
+    X = 1,
+    // (undocumented)
+    Y = 2
+}
+
+// @public
+export enum StripPattern {
+    // (undocumented)
+    loop = 2,
+    // (undocumented)
+    zigzag = 1
+}
+
+// @public
+export enum StripStartCorner {
     // (undocumented)
     BottomLeft = 3,
     // (undocumented)
@@ -80,22 +92,6 @@ export enum startCorner {
     TopLeft = 1,
     // (undocumented)
     TopRight = 2
-}
-
-// @public (undocumented)
-export enum stripDirection {
-    // (undocumented)
-    X = 1,
-    // (undocumented)
-    Y = 2
-}
-
-// @public (undocumented)
-export enum stripPattern {
-    // (undocumented)
-    loop = 2,
-    // (undocumented)
-    zigzag = 1
 }
 
 

@@ -4,7 +4,7 @@
 
 ## Matrix.pixelPositions() method
 
-get a list of pixel positions for this marix
+Return all pixel positions for the matrix (beta)
 
 <b>Signature:</b>
 
@@ -14,4 +14,6 @@ pixelPositions(): PixelPosition[];
 <b>Returns:</b>
 
 [PixelPosition](./matrix-from-vector.pixelposition.md)<!-- -->\[\]
+
+- array of PixelPosition items
 

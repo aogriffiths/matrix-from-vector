@@ -3,21 +3,21 @@ import * as matrix from "./index"
 export interface Startcorner{
   name: string
   id: number
-  enum: matrix.startCorner
+  enum: matrix.StripStartCorner
   imageFile?: string
 }
 
 export interface Direction{
   name: string
   id: number
-  enum: matrix.stripDirection
+  enum: matrix.StripDirection
   startcorner?: Startcorner[]
 }
 
 export interface Pattern{
   name: string
   id: number
-  enum: matrix.stripPattern
+  enum: matrix.StripPattern
   direction?: Direction[]
 }
 
@@ -44,25 +44,25 @@ function* enumValues<T>(enumObj: { [ key: string ]: T }): IterableIterator<T> {
 
 export function generateAllLayouts(){
   var pattern: Pattern[] = []
-  for (const patternName of enumValues(matrix.stripPattern)) {
+  for (const patternName of enumValues(matrix.StripPattern)) {
     var direction: Direction[] = []
     pattern.push({
-      name: matrix.stripPattern[patternName] + "",
+      name: matrix.StripPattern[patternName] + "",
       id:pattern.length+1,
       enum: patternName,
       direction: direction
     })
-    for (const directionName of enumValues(matrix.stripDirection)) {
+    for (const directionName of enumValues(matrix.StripDirection)) {
       var startcorner:Startcorner[] = []
       direction.push({
-        name: matrix.stripDirection[directionName] + "",
+        name: matrix.StripDirection[directionName] + "",
         id:direction.length+1,
         enum: directionName,
         startcorner: startcorner
       })
-      for (const  startcornerName of enumValues(matrix.startCorner)) {
+      for (const  startcornerName of enumValues(matrix.StripStartCorner)) {
         startcorner.push({
-          name: matrix.startCorner[startcornerName] + "",
+          name: matrix.StripStartCorner[startcornerName] + "",
           id:startcorner.length+1,
           enum: startcornerName,
         })

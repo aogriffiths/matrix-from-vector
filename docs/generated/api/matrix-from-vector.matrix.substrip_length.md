@@ -4,6 +4,8 @@
 
 ## Matrix.substrip\_length property
 
+Gets or sets the sub strip length for this matrix. This will either be the width or height of the matrix, depending on the strip direction. (beta)
+
 <b>Signature:</b>
 
 ```typescript

@@ -4,17 +4,44 @@
 
 ## Matrix.(constructor)
 
-Constructs a new instance of the `Matrix` class
+Creates a new Matrix (beta)
 
 <b>Signature:</b>
 
 ```typescript
-constructor({ height, width, pattern, start_corner, direction }: MatrixConstuctor);
+constructor(options: MatrixConstuctor);
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { height, width, pattern, start\_corner, direction } | [MatrixConstuctor](./matrix-from-vector.matrixconstuctor.md) |  |
+|  options | [MatrixConstuctor](./matrix-from-vector.matrixconstuctor.md) | constructor options |
+
+## Example 1
+
+A 3x4 example using the defaults. See the layout <a href="../layouts/layouts.md">here</a> with: : <ul> <li> pattern: `zigzag`</li> <li> start\_corner `BottomLeft`</li> <li> direction: `X`</li> </ul>
+
+```
+const matrix = new Matrix({
+       height: 3,
+       width: 4
+     })
+
+```
+
+## Example 2
+
+An example with all options provided. See the layout See the layout <a href="../layouts/layouts.md">here</a> with: : <ul> <li> pattern: `loop`</li> <li> start\_corner `TopRight`</li> <li> direction: `Y`</li> </ul>
+
+```
+const matrix = new Matrix({
+  height: 10,
+  width: 15,
+  pattern: StripPattern.loop,
+  start_corner: StripStartCorner.TopRight,
+  direction: StripDirection.Y,
+})
+
+```
 

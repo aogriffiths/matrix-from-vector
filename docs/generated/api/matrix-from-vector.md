@@ -8,20 +8,20 @@
 
 |  Class | Description |
 |  --- | --- |
-|  [Matrix](./matrix-from-vector.matrix.md) |  |
+|  [Matrix](./matrix-from-vector.matrix.md) | A matrix based on a vector (beta) |
 
 ## Enumerations
 
 |  Enumeration | Description |
 |  --- | --- |
-|  [startCorner](./matrix-from-vector.startcorner.md) |  |
-|  [stripDirection](./matrix-from-vector.stripdirection.md) |  |
-|  [stripPattern](./matrix-from-vector.strippattern.md) |  |
+|  [StripDirection](./matrix-from-vector.stripdirection.md) | StripDirection All possible strip directions (beta) |
+|  [StripPattern](./matrix-from-vector.strippattern.md) | StripPattern All possible strip patterns (beta) |
+|  [StripStartCorner](./matrix-from-vector.stripstartcorner.md) | StripPattern All possible strip start corners (beta) |
 
 ## Interfaces
 
 |  Interface | Description |
 |  --- | --- |
-|  [MatrixConstuctor](./matrix-from-vector.matrixconstuctor.md) |  |
-|  [PixelPosition](./matrix-from-vector.pixelposition.md) |  |
+|  [MatrixConstuctor](./matrix-from-vector.matrixconstuctor.md) | MatrixConstuctor Contractor parameters for creating a Matrix (beta) |
+|  [PixelPosition](./matrix-from-vector.pixelposition.md) | PixelPositions An array of pixel numbers and their coordinates (beta) |
 

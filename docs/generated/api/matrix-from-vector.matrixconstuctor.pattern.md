@@ -7,5 +7,5 @@
 <b>Signature:</b>
 
 ```typescript
-pattern?: stripPattern;
+pattern?: StripPattern;
 ```

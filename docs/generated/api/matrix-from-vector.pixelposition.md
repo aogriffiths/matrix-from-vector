@@ -4,6 +4,8 @@
 
 ## PixelPosition interface
 
+PixelPositions An array of pixel numbers and their coordinates (beta)
+
 <b>Signature:</b>
 
 ```typescript

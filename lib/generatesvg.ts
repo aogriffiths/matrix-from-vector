@@ -3,9 +3,7 @@ import * as matrix from "./index"
 import * as d3 from 'd3'
 import * as jsdom from 'jsdom'
 
-
-
-var IMAGE_SIZE = 400        // width and height
+var IMAGE_SIZE = 400    // width and height
 var PIXEL_SIZE = 40     // max size for each pixel in a cell
 
 // Create an array of pixel pairs
@@ -21,7 +19,7 @@ function generatePixelPairs(positions: matrix.PixelPosition[]) : PixelPair[]{
   return pairs
 }
 
-// Build the sbg image
+// Build the svg image
 export function buildSVGofMatrix(matrix: matrix.Matrix) : string {
   const { JSDOM } = jsdom
   const dom = new JSDOM(`<!DOCTYPE html><body></body>`)

@@ -4,6 +4,8 @@
 
 ## MatrixConstuctor interface
 
+MatrixConstuctor Contractor parameters for creating a Matrix (beta)
+
 <b>Signature:</b>
 
 ```typescript
@@ -14,9 +16,9 @@ export interface MatrixConstuctor
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [direction?](./matrix-from-vector.matrixconstuctor.direction.md) | [stripDirection](./matrix-from-vector.stripdirection.md) | <i>(Optional)</i> |
+|  [direction?](./matrix-from-vector.matrixconstuctor.direction.md) | [StripDirection](./matrix-from-vector.stripdirection.md) | <i>(Optional)</i> |
 |  [height?](./matrix-from-vector.matrixconstuctor.height.md) | number | <i>(Optional)</i> |
-|  [pattern?](./matrix-from-vector.matrixconstuctor.pattern.md) | [stripPattern](./matrix-from-vector.strippattern.md) | <i>(Optional)</i> |
-|  [start\_corner?](./matrix-from-vector.matrixconstuctor.start_corner.md) | [startCorner](./matrix-from-vector.startcorner.md) | <i>(Optional)</i> |
+|  [pattern?](./matrix-from-vector.matrixconstuctor.pattern.md) | [StripPattern](./matrix-from-vector.strippattern.md) | <i>(Optional)</i> |
+|  [start\_corner?](./matrix-from-vector.matrixconstuctor.start_corner.md) | [StripStartCorner](./matrix-from-vector.stripstartcorner.md) | <i>(Optional)</i> |
 |  [width?](./matrix-from-vector.matrixconstuctor.width.md) | number | <i>(Optional)</i> |
 

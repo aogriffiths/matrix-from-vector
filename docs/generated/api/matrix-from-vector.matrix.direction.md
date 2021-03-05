@@ -7,5 +7,5 @@
 <b>Signature:</b>
 
 ```typescript
-direction: stripDirection;
+direction: StripDirection;
 ```
