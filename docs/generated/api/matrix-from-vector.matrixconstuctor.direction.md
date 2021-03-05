@@ -4,6 +4,8 @@
 
 ## MatrixConstuctor.direction property
 
+The initial direction the vector travels from the start corner across the natrix . Default `StripDirection.X`
+
 <b>Signature:</b>
 
 ```typescript

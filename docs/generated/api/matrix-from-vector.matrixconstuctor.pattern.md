@@ -4,6 +4,8 @@
 
 ## MatrixConstuctor.pattern property
 
+Matrix pattern. Default `StripPattern.zigzag`
+
 <b>Signature:</b>
 
 ```typescript

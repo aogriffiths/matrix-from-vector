@@ -4,6 +4,8 @@
 
 ## MatrixConstuctor.start\_corner property
 
+The corner of the matrix where the vector starts. Default `StripStartCorner.BottomLeft`
+
 <b>Signature:</b>
 
 ```typescript

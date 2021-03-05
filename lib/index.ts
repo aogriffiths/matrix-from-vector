@@ -63,10 +63,26 @@ export enum StripDirection{
  * @public
  */
 export interface MatrixConstuctor {
+  /**
+   * Height of the matrix. Default `0`.
+   */
   height?: number
+  /**
+   * Width of the matrix. Default `0`.
+   */
   width?: number
+  /**
+   * Matrix pattern. Default `StripPattern.zigzag`
+   */
   pattern?: StripPattern
+  /**
+   * The corner of the matrix where the vector starts. Default `StripStartCorner.BottomLeft`
+   */
   start_corner?: StripStartCorner
+  /**
+   * The initial direction the vector travels from the start corner across
+   * the natrix . Default `StripDirection.X`
+   */
   direction?: StripDirection
 }
 
@@ -82,6 +98,13 @@ export interface PixelPosition{
   y:number //y coordinate
 }
 
+//
+//   y
+//   TL. .TR
+//   . . . .
+//   . . . .
+//   BL. .BR x
+
 /**
  * A matrix based on a vector
  * (beta)
@@ -93,6 +116,50 @@ export class Matrix {
     pattern: StripPattern
     start_corner: StripStartCorner
     direction: StripDirection
+
+    /**
+     * Creates a new Matrix
+     * (beta)
+     * @public
+     * @param options - constructor options
+     * @example
+     * A 3x4 example using the defaults. See the layout <a href="../layouts/layouts.md">here</a> with:
+     * <ul>
+     * <li> pattern: `zigzag`</li>
+     * <li> start_corner `BottomLeft`</li>
+     * <li> direction: `X`</li>
+     * </ul>
+     * ```
+     * const matrix = new Matrix({
+     *   height: 3,
+     *   width: 4
+     * })
+     * ```
+     * @example
+     * An example with all options provided.
+     * See the layout See the layout <a href="../layouts/layouts.md">here</a> with:
+     * <ul>
+     * <li> pattern: `loop`</li>
+     * <li> start_corner `TopRight`</li>
+     * <li> direction: `Y`</li>
+     * </ul>
+     * ```
+     * const matrix = new Matrix({
+     *   height: 10,
+     *   width: 15,
+     *   pattern: StripPattern.loop,
+     *   start_corner: StripStartCorner.TopRight,
+     *   direction: StripDirection.Y,
+     * })
+     * ```
+     */
+    constructor(options: MatrixConstuctor) {
+      this.width = options.width || 0
+      this.height = options.height || 0
+      this.pattern = options.pattern || StripPattern.zigzag
+      this.start_corner = options.start_corner || StripStartCorner.BottomLeft
+      this.direction = options.direction || StripDirection.X
+    }
 
     /**
      * Gets the full strip length for this matrix. Can not be set directly.
@@ -140,55 +207,7 @@ export class Matrix {
         : (this.height = newV)
     }
 
-    //   y
-    //   TL. .TR
-    //   . . . .
-    //   . . . .
-    //   BL. .BR x
 
-    /**
-     * Creates a new Matrix
-     * (beta)
-     * @public
-     * @param options - constructor options
-     * @example
-     * A 3x4 example using the defaults. See the layout <a href="../layouts/layouts.md">here</a> with:
-     * <ul>
-     * <li> pattern: `zigzag`</li>
-     * <li> start_corner `BottomLeft`</li>
-     * <li> direction: `X`</li>
-     * </ul>
-     * ```
-     * const matrix = new Matrix({
-       height: 3,
-       width: 4
-     })
-     * ```
-     * @example
-     * An example with all options provided.
-     * See the layout See the layout <a href="../layouts/layouts.md">here</a> with:
-     * <ul>
-     * <li> pattern: `loop`</li>
-     * <li> start_corner `TopRight`</li>
-     * <li> direction: `Y`</li>
-     * </ul>
-     * ```
-     * const matrix = new Matrix({
-     *   height: 10,
-     *   width: 15,
-     *   pattern: StripPattern.loop,
-     *   start_corner: StripStartCorner.TopRight,
-     *   direction: StripDirection.Y,
-     * })
-     * ```
-     */
-    constructor(options: MatrixConstuctor) {
-      this.width = options.width || 0
-      this.height = options.height || 0
-      this.pattern = options.pattern || StripPattern.zigzag
-      this.start_corner = options.start_corner || StripStartCorner.BottomLeft
-      this.direction = options.direction || StripDirection.X
-    }
 
 
     isTopDown():   boolean {return this.isTopStart() && this.direction == StripDirection.X}

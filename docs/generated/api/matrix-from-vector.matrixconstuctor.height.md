@@ -4,6 +4,8 @@
 
 ## MatrixConstuctor.height property
 
+Height of the matrix. Default 0.
+
 <b>Signature:</b>
 
 ```typescript

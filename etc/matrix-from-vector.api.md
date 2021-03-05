@@ -44,15 +44,10 @@ export class Matrix {
 
 // @public
 export interface MatrixConstuctor {
-    // (undocumented)
     direction?: StripDirection;
-    // (undocumented)
     height?: number;
-    // (undocumented)
     pattern?: StripPattern;
-    // (undocumented)
     start_corner?: StripStartCorner;
-    // (undocumented)
     width?: number;
 }
 

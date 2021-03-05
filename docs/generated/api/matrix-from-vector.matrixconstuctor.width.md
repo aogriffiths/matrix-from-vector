@@ -4,6 +4,8 @@
 
 ## MatrixConstuctor.width property
 
+Width of the matrix. Default 0.
+
 <b>Signature:</b>
 
 ```typescript
