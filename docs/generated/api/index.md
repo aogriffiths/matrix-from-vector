@@ -8,5 +8,5 @@
 
 |  Package | Description |
 |  --- | --- |
-|  [matrix-from-vector](./matrix-from-vector.md) |  |
+|  [matrix-scan](./matrix-scan.md) |  |
 

@@ -1,5 +1,5 @@
 {
-  "name": "commonjs",
+  "name": "matrix-scan-commonjs-example",
   "version": "1.0.0",
   "description": "A CommonJS / Node previous to v12 example",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "matrix-from-vector": "^1.0.0"
+    "matrix-scan": "file:../../"
   },
   "devDependencies": {
     "@types/node": "^14.14.31",

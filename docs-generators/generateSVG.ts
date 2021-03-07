@@ -1,18 +1,23 @@
 
-import * as matrix from "./index"
+import * as matrix from "../lib/index"
 import * as d3 from 'd3'
 import * as jsdom from 'jsdom'
+import * as fs from 'fs'
+import * as path from "path"
 
-var IMAGE_SIZE = 400    // width and height
-var PIXEL_SIZE = 40     // max size for each pixel in a cell
+var MATRIX_WIDTH:number = 4               // pixels wide
+var MATRIX_HEIGHT:number = 4              // pixels high
 
-// Create an array of pixel pairs
-interface PixelPair{
+var IMAGE_SIZE:number = 400    // width and height
+var PIXEL_SIZE:number = 40     // max size for each pixel in a cell
+
+// Create an array of position pairs
+interface PositionPair{
   start: matrix.Position
   end: matrix.Position
 }
-function generatePixelPairs(positions: matrix.Position[]) : PixelPair[]{
-  var pairs:PixelPair[]=[]
+function generatePositionPairs(positions: matrix.Position[]) : PositionPair[]{
+  var pairs:PositionPair[]=[]
   for(var i=0; i<positions.length-1; i++){
     pairs.push({start:positions[i], end:positions[i+1]})
   }
@@ -25,7 +30,7 @@ export function buildSVGofMatrix(matrix: matrix.Matrix) : string {
   const dom = new JSDOM(`<!DOCTYPE html><body></body>`)
 
   var positions = matrix.getAllPositions()
-  var pairs =  generatePixelPairs(positions)
+  var pairs =  generatePositionPairs(positions)
 
   let body = d3.select(dom.window.document.querySelector("body"))
   let svg = body.append('svg').attr('width', IMAGE_SIZE).attr('height', IMAGE_SIZE).attr('xmlns', 'http://www.w3.org/2000/svg');
@@ -133,7 +138,7 @@ export function buildSVGofMatrix(matrix: matrix.Matrix) : string {
     .join("g")
     .classed("arrows", true)
 
-  var arrow = (d:PixelPair)=>{
+  var arrow = (d:PositionPair)=>{
     return d3.line()(centerOffset(d.start, d.end))
   }
 
@@ -147,4 +152,24 @@ export function buildSVGofMatrix(matrix: matrix.Matrix) : string {
 
 
   return body.html();
+}
+
+export function generateSVGs(layoutData, output_dir){
+  //SVGs
+  layoutData.pattern?.forEach(function(pattern){
+    pattern.direction?.forEach(function(direction){
+      direction.startcorner?.forEach(function(start_corner){
+        const amatrix = new matrix.Matrix({
+          width: MATRIX_WIDTH,
+          height: MATRIX_HEIGHT,
+          direction: direction.enum,
+          pattern: pattern.enum,
+          startCorner: start_corner.enum
+        })
+        start_corner.imageFile = `${pattern.name}_${direction.name}_${start_corner.name}.svg`
+        var svg = buildSVGofMatrix(amatrix)
+        fs.writeFileSync(path.resolve(__dirname, output_dir, start_corner.imageFile), svg)
+      })
+    })
+  })
 }

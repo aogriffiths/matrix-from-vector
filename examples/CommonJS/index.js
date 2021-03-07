@@ -1,5 +1,5 @@
-var { Matrix } = require('matrix-from-vector')
+var { Matrix } = require('matrix-scan')
 
 var m = new Matrix({height:3, width:3})
 
-console.log(`Full strip length for a 3x3 matrix is ${m.fullstrip_length} pixels`)
+console.log(`Full vector length for a 3x3 matrix is ${m.fullVectorLength} pixels`)

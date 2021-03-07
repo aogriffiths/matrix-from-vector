@@ -2,19 +2,11 @@
 import { expect } from "chai";
 import * as matrix from "../lib/index"
 
-
-describe('calculate', function() {
-  it('add', function() {
-    let result = 5+2;
-    expect(result).equal(7);
-  });
-});
-
 describe('Matrix', function() {
   it('should have a default constuctor', function() {
     const m = new matrix.Matrix({
     })
-    expect(m.fullstrip_length).equal(0)
+    expect(m.fullVectorLength).equal(0)
   })
 
   it('should constuct with width and height', function() {
@@ -22,8 +14,8 @@ describe('Matrix', function() {
       width: 4,
       height: 6
     })
-    expect(m.fullstrip_length).equal(4*6)
-    expect(m.substrip_count * m.substrip_length).equal(4*6)
+    expect(m.fullVectorLength).equal(4*6)
+    expect(m.subVectorCount * m.subVectorLength).equal(4*6)
   })
 
   //3x3 matricies
@@ -230,7 +222,7 @@ describe('Matrix', function() {
         pattern: test.stripPattern,
         direction: test.stripDirection,
       })
-      expect(m.fullstrip_length).equal(height * width)
+      expect(m.fullVectorLength).equal(height * width)
       var actualmatrix: number[][]
       actualmatrix = new Array(height)
       for(var jr = 0; jr <  height; jr++){

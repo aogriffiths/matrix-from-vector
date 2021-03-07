@@ -1,0 +1,24 @@
+{
+  "name": "matrix-scan-docs-generators",
+  "version": "1.0.0",
+  "description": "Generates docs for matrix scan",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node index.ts"
+  },
+  "author": "Adam Griffiths",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/d3": "^6.3.0",
+    "@types/jsdom": "^16.2.6",
+    "d3": "^6.5.0",
+    "glob": "^7.1.6",
+    "handlebars": "^4.7.7",
+    "jsdom": "^16.4.0",
+    "matrix-scan": "file:../",
+    "request": "^2.88.2",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.2"
+  },
+  "dependencies": {}
+}

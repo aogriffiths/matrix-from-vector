@@ -123,12 +123,13 @@ export interface Position{
   y:number
 }
 
-//
 //   y
+//   ^
+//   |
 //   TL. .TR
 //   . . . .
 //   . . . .
-//   BL. .BR x
+//   BL. .BR  -> x
 
 /**
  * A matrix based on a vector
@@ -203,46 +204,48 @@ export class Matrix {
     }
 
     /**
-     * The full strip length for this matrix. Can not be set directly.
+     * The full vector length for this matrix. Can not be set directly.
      * calculated based on the width and height of the matrix.
      * (beta)
      * @public
      */
-    get fullstrip_length(): number {
+    get fullVectorLength(): number {
       return this.width * this.height
     }
 
     /**
-     * The sub strip length for this matrix. This will either be
-     * the width or height of the matrix, depending on the strip direction.
+     * The sub vector length for this matrix. The full vector needs to be divided
+     * in to smaller "sub" vectors which are laied out to cover the matrix. Each
+     * subvector will have the same length which will be wither the width or height
+     * of the matrix, depending on the vector direction.
      * (beta)
      * @public
      */
-    get substrip_length(): number {
+    get subVectorLength(): number {
       return this.direction == VectorDirection.X
         ? this.width
         : this.height
     }
     // NOTE: For API Extractor don't write documentation for the setter.
-    set substrip_length(newV: number) {
+    set subVectorLength(newV: number) {
       this.direction == VectorDirection.X
         ? (this.width = newV)
         : (this.height = newV)
     }
 
     /**
-     * Gets or sets the sub strip count for this matrix. This will either be
-     * the width or height of the matrix, depending on the strip direction.
+     * Gets or sets the sub vector count for this matrix. This will either be
+     * the width or height of the matrix, depending on the vector direction.
      * (beta)
      * @public
      */
-    get substrip_count(): number {
+    get subVectorCount(): number {
       return this.direction == VectorDirection.X
         ? this.height
         : this.width
     }
     // NOTE: For API Extractor don't write documentation for the setter.
-    set substrip_count(newV: number) {
+    set subVectorCount(newV: number) {
       this.direction == VectorDirection.X
         ? (this.width = newV)
         : (this.height = newV)
@@ -306,12 +309,12 @@ export class Matrix {
     isRitStart():  boolean {return this.start_corner == MatrixCorner.TopRight || this.start_corner == MatrixCorner.BottomRight}
 
     /**
-     * Return this 1D vector index of a pixel based on its 2D matrix coordinates
+     * Return this 1D vector position of a value given it's 2D matrix coordinates
      * (beta)
      * @public
-     * @param x - the x coordinate of the pixel
-     * @param y - the y coordinate of the pixel
-     * @returns - the pixel number on the strip that makes up this matrix
+     * @param x - the x coordinate in the matrix
+     * @param y - the y coordinate in the matrix
+     * @returns - the corresponding possition in the vector ("`n`")
      */
     getVectorIndex(x: number, y: number): number{
       //Correct for start corner (using negative coordinates for now)
@@ -347,20 +350,20 @@ export class Matrix {
 
       //Replace negative coordinates with absolute
       if(res.full < 0){
-        res.full = this.substrip_count + res.full
+        res.full = this.subVectorCount + res.full
       }
       if(res.rem < 0){
-        res.rem = this.substrip_length + res.rem
+        res.rem = this.subVectorLength + res.rem
       }
 
       //Correct for zigzag
       if(this.pattern === VectorPattern.zigzag){
         if((res.full % 2) != 0){
-          res.rem = this.substrip_length - res.rem - 1
+          res.rem = this.subVectorLength - res.rem - 1
         }
       }
 
-      return res.full * this.substrip_length + res.rem
+      return res.full * this.subVectorLength + res.rem
     }
 
 

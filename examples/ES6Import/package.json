@@ -1,5 +1,5 @@
 {
-  "name": "ES6Import",
+  "name": "matrix-scan-ES6Import-example",
   "version": "1.0.0",
   "description": "An ES6 example",
   "main": "index.mjs",
@@ -8,7 +8,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "matrix-from-vector": "^1.0.0"
+    "matrix-scan": "file:../../"
   },
   "devDependencies": {},
   "keywords": [],

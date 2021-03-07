@@ -1,4 +1,4 @@
-import * as matrix from "./index"
+import * as matrix from "../lib/index"
 
 export interface Startcorner{
   name: string
@@ -42,7 +42,7 @@ function* enumValues<T>(enumObj: { [ key: string ]: T }): IterableIterator<T> {
   }
 }
 
-export function generateAllLayouts(){
+export function getLayoutData(){
   var pattern: Pattern[] = []
   for (const patternName of enumValues(matrix.VectorPattern)) {
     var direction: Direction[] = []

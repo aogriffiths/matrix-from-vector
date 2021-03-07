@@ -1,15 +1,12 @@
 {
-  "name": "matrix-scan-CommonJS-example",
+  "name": "matrix-scan-failiure-example",
   "version": "1.0.0",
-  "description": "A CommonJS / Node previous to v12 example",
+  "description": "An example that should fail to run",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "license": "ISC",
-  "dependencies": {
-    "matrix-scan": "file:../../"
-  },
   "devDependencies": {},
   "keywords": [],
   "author": ""
