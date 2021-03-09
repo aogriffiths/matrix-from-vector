@@ -39,7 +39,7 @@ export class Matrix {
     /**
      * The corner of the matrix where the vector starts
      */
-    start_corner: Matrix.Corner
+    startCorner: Matrix.Corner
     /**
      * The initial direction the vector travels from the start corner across
      * the matrix
@@ -89,7 +89,7 @@ export class Matrix {
     constructor(options: Matrix.Constuctor) {
       this.width = options.width || 0
       this.height = options.height || 0
-      this.start_corner = options.startCorner || Matrix.Corner.BottomLeft
+      this.startCorner = options.startCorner || Matrix.Corner.BottomLeft
       this.direction = options.direction || Matrix.Direction.X
       this.pattern = options.pattern || Matrix.Pattern.zigzag
     }
@@ -100,7 +100,7 @@ export class Matrix {
      * (beta)
      * @public
      */
-    get fullVectorLength(): number {
+    get fullArrayLength(): number {
       return this.width * this.height
     }
 
@@ -112,13 +112,13 @@ export class Matrix {
      * (beta)
      * @public
      */
-    get subVectorLength(): number {
+    get subArrayLength(): number {
       return this.direction == Matrix.Direction.X
         ? this.width
         : this.height
     }
     // NOTE: For API Extractor don't write documentation for the setter.
-    set subVectorLength(newV: number) {
+    set subArrayLength(newV: number) {
       this.direction == Matrix.Direction.X
         ? (this.width = newV)
         : (this.height = newV)
@@ -130,13 +130,13 @@ export class Matrix {
      * (beta)
      * @public
      */
-    get subVectorCount(): number {
+    get subArrayCount(): number {
       return this.direction == Matrix.Direction.X
         ? this.height
         : this.width
     }
     // NOTE: For API Extractor don't write documentation for the setter.
-    set subVectorCount(newV: number) {
+    set subArrayCount(newV: number) {
       this.direction == Matrix.Direction.X
         ? (this.width = newV)
         : (this.height = newV)
@@ -155,49 +155,49 @@ export class Matrix {
      * @public
      * @returns true or false
      */
-    isBotomUp():   boolean {return this.isBtmStart() && this.direction == Matrix.Direction.X}
+    isBottomUp():   boolean {return this.isBottomStart() && this.direction == Matrix.Direction.X}
     /**
      * Returns whether this matrix has a <b>left to right </b> pattern
      * (beta)
      * @public
      * @returns true or false
      */
-    isLeftRight(): boolean {return this.isLefStart() && this.direction == Matrix.Direction.Y}
+    isLeftRight(): boolean {return this.isLeftStart() && this.direction == Matrix.Direction.Y}
     /**
      * Returns whether this matrix has a <b>right to left</b> pattern
      * (beta)
      * @public
      * @returns true or false
      */
-    isRightLeft(): boolean {return this.isRitStart() && this.direction == Matrix.Direction.Y}
+    isRightLeft(): boolean {return this.isRightStart() && this.direction == Matrix.Direction.Y}
     /**
      * Returns whether this matrix has a pattern starting at the <b>top</b>
      * (beta)
      * @public
      * @returns true or false
      */
-    isTopStart():  boolean {return this.start_corner == Matrix.Corner.TopLeft || this.start_corner == Matrix.Corner.TopRight}
+    isTopStart():  boolean {return this.startCorner == Matrix.Corner.TopLeft || this.startCorner == Matrix.Corner.TopRight}
     /**
      * Returns whether this matrix has a pattern starting at the <b>bottom</b>
      * (beta)
      * @public
      * @returns true or false
      */
-    isBtmStart():  boolean {return this.start_corner == Matrix.Corner.BottomLeft || this.start_corner == Matrix.Corner.BottomRight}
+    isBottomStart():  boolean {return this.startCorner == Matrix.Corner.BottomLeft || this.startCorner == Matrix.Corner.BottomRight}
     /**
      * Returns whether this matrix has a pattern starting on the <b>left</b>
      * (beta)
      * @public
      * @returns true or false
      */
-    isLefStart():  boolean {return this.start_corner == Matrix.Corner.TopLeft || this.start_corner == Matrix.Corner.BottomLeft}
+    isLeftStart():  boolean {return this.startCorner == Matrix.Corner.TopLeft || this.startCorner == Matrix.Corner.BottomLeft}
     /**
      * Returns whether this matrix has a pattern starting on the <b>right</b>
      * (beta)
      * @public
      * @returns true or false
      */
-    isRitStart():  boolean {return this.start_corner == Matrix.Corner.TopRight || this.start_corner == Matrix.Corner.BottomRight}
+    isRightStart():  boolean {return this.startCorner == Matrix.Corner.TopRight || this.startCorner == Matrix.Corner.BottomRight}
 
     /**
      * Return this 1D vector position of a value given it's 2D matrix coordinates
@@ -209,13 +209,13 @@ export class Matrix {
      */
     getVectorIndex(x: number, y: number): number{
       //Correct for start corner (using negative coordinates for now)
-      if ( this.start_corner == Matrix.Corner.TopLeft ||
-           this.start_corner == Matrix.Corner.TopRight ) {
+      if ( this.startCorner == Matrix.Corner.TopLeft ||
+           this.startCorner == Matrix.Corner.TopRight ) {
         y *= -1
         y += -1
       }
-      if ( this.start_corner == Matrix.Corner.BottomRight ||
-           this.start_corner == Matrix.Corner.TopRight ) {
+      if ( this.startCorner == Matrix.Corner.BottomRight ||
+           this.startCorner == Matrix.Corner.TopRight ) {
         x *= -1
         x += -1
       }
@@ -241,20 +241,20 @@ export class Matrix {
 
       //Replace negative coordinates with absolute
       if(res.full < 0){
-        res.full = this.subVectorCount + res.full
+        res.full = this.subArrayCount + res.full
       }
       if(res.rem < 0){
-        res.rem = this.subVectorLength + res.rem
+        res.rem = this.subArrayLength + res.rem
       }
 
       //Correct for zigzag
       if(this.pattern === Matrix.Pattern.zigzag){
         if((res.full % 2) != 0){
-          res.rem = this.subVectorLength - res.rem - 1
+          res.rem = this.subArrayLength - res.rem - 1
         }
       }
 
-      return res.full * this.subVectorLength + res.rem
+      return res.full * this.subArrayLength + res.rem
     }
 
 

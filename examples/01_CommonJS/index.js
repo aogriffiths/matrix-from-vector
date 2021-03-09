@@ -9,6 +9,6 @@ var m = new Matrix({height:3, width:3})
 // SPLIT
 
 // logging this for unit tests:
-console.log(`[[3*3=${m.fullVectorLength}]]`)
+console.log(`[[3*3=${m.fullArrayLength}]]`)
 // logging this in english
-console.log(`Full vector length for a 3x3 matrix is ${m.fullVectorLength} pixels`)
+console.log(`Full array length for a 3x3 matrix is ${m.fullArrayLength} pixels`)

@@ -55,9 +55,14 @@ We use the following definitions:
 
 ## 🔢 Supported layouts
 
-The layouts this library supports can be found [here](docs/generated/layouts/layouts.md). Here's an example of one:
+The layouts this library supports can be found [here](docs/generated/layouts/layouts.md). Here's an example:
+
+- starting: **BottomLeft** (see green box)
+- direction: **X** (see green arrow)
+- pattern: **zigzag** (see dotted line arrows)
 
 <img src="docs/generated/layouts/zigzag_X_BottomLeft.svg" />
+
 
 ## 💻 Getting started
 
@@ -94,19 +99,74 @@ var m: Matrix
 m = new Matrix({height:3, width:3})
 ```
 
-### Basic Usage
-Same syntax as ESM but TypeScript allows strong typed variables, useful for static code validation and autocompletion in editors like atom and VSCode.
+### Basic properties
+Here are the basic properties and their possible values
 
 ```js
-import { Matrix } from 'matrix-scan'
 
-var  m = new Matrix({
+// In the constuctor (all optional)
+var m = new Matrix({
   height:3,
   width:3,
-  direction: Matrix.Direction.X
+  startCorner: Matrix.Corner.BottomLeft,
+  direction: Matrix.Direction.X,
+  pattern: Matrix.Pattern.zigzag
 })
 
-m.getVectorIndex
+// startCorner can be:
+Matrix.Corner.BottomLeft
+Matrix.Corner.BottomRight
+Matrix.Corner.TopLeft
+Matrix.Corner.TopRight
+
+//direction can be:
+Matrix.Direction.Y
+Matrix.Direction.Y
+
+//pattern can be:
+Matrix.Pattern.loop
+Matrix.Pattern.zigzag
+
+// And they can be get set after constuction too
+m.height = 4
+m.width = 5
+m.startCorner =  Matrix.Corner.TopLeft
+m.direction =  Matrix.Direction.Y
+m.pattern =  Matrix.Pattern.loop
+```
+
+### Caculated properties
+These properties can also be get and/or set on a Matrix object, but they are calculated (on get) or have side effects (on set).
+
+```js
+
+// Read only. Will alows be m.height * m.width
+m.fullArrayLength
+
+// Read write. This is the length of each continuous run of values across the
+// matrix. It will either be m.height or m.width debding on m.direction
+m.subArrayLength
+
+// Read write. This is the number of sub arrays needed to cover the
+// matrix. It will either be m.height or m.width debding on m.direction
+m.subArrayCount
+```
+
+### Booleam tests
+These give simple true/false information about the direction of the matrix. They can be understood by where the first and last element of the matrix. is.
+
+```js
+
+//First element of the matrix is..
+ m.isTopStart()    // ..on the top row (last could be left, right or bottom)
+ m.isBottomStart() // ..on the bottom row (last could be left, right or top)
+ m.isLeftStart()   // ..on the left row (last could be right, top or bottom)
+ m.isRightStart()  // ..on the right row (last could be left, top or bottom)
+
+ m.isTopDown()     // ..on the top row, last is on the bottom
+ m.isBottomUp()    // ..on the bottom row, last is on the top
+ m.isLeftRight()   // ..on the left column, last is on the right
+ m.isRightLeft()   // ..on the right column, last is on the left
 ```
 
 

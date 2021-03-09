@@ -8,24 +8,24 @@
 export class Matrix {
     constructor(options: Matrix.Constuctor);
     direction: Matrix.Direction;
-    get fullVectorLength(): number;
+    get fullArrayLength(): number;
     getAllPositions(): Matrix.Position[];
     getVectorIndex(x: number, y: number): number;
     height: number;
-    isBotomUp(): boolean;
-    isBtmStart(): boolean;
-    isLefStart(): boolean;
+    isBottomStart(): boolean;
+    isBottomUp(): boolean;
     isLeftRight(): boolean;
+    isLeftStart(): boolean;
     isRightLeft(): boolean;
-    isRitStart(): boolean;
+    isRightStart(): boolean;
     isTopDown(): boolean;
     isTopStart(): boolean;
     pattern: Matrix.Pattern;
-    start_corner: Matrix.Corner;
-    get subVectorCount(): number;
-    set subVectorCount(newV: number);
-    get subVectorLength(): number;
-    set subVectorLength(newV: number);
+    startCorner: Matrix.Corner;
+    get subArrayCount(): number;
+    set subArrayCount(newV: number);
+    get subArrayLength(): number;
+    set subArrayLength(newV: number);
     width: number;
 }
 

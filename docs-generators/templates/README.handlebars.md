@@ -49,9 +49,14 @@ We use the following definitions:
 
 ## 🔢 Supported layouts
 
-The layouts this library supports can be found [here](docs/generated/layouts/layouts.md). Here's an example of one:
+The layouts this library supports can be found [here](docs/generated/layouts/layouts.md). Here's an example:
+
+- starting: **BottomLeft** (see green box)
+- direction: **X** (see green arrow)
+- pattern: **zigzag** (see dotted line arrows)
 
 <img src="docs/generated/layouts/zigzag_X_BottomLeft.svg" />
+
 
 ## 💻 Getting started
 

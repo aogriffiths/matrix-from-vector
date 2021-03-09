@@ -6,7 +6,7 @@ describe('Matrix', function() {
   it('should have a default constuctor', function() {
     const m = new Matrix({
     })
-    expect(m.fullVectorLength).equal(0)
+    expect(m.fullArrayLength).equal(0)
   })
 
   it('should constuct with width and height', function() {
@@ -14,8 +14,8 @@ describe('Matrix', function() {
       width: 4,
       height: 6
     })
-    expect(m.fullVectorLength).equal(4*6)
-    expect(m.subVectorCount * m.subVectorLength).equal(4*6)
+    expect(m.fullArrayLength).equal(4*6)
+    expect(m.subArrayCount * m.subArrayLength).equal(4*6)
   })
 
   //3x3 matricies
@@ -222,7 +222,7 @@ describe('Matrix', function() {
         pattern: test.stripPattern,
         direction: test.stripDirection,
       })
-      expect(m.fullVectorLength).equal(height * width)
+      expect(m.fullArrayLength).equal(height * width)
       var actualmatrix: number[][]
       actualmatrix = new Array(height)
       for(var jr = 0; jr <  height; jr++){
