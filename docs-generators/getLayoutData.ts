@@ -1,27 +1,27 @@
-import * as matrix from "../lib/index"
+import { Matrix } from "../lib/index"
 
 export interface Startcorner{
   name: string
   id: number
-  enum: matrix.MatrixCorner
+  enum: Matrix.Corner
   imageFile?: string
 }
 
 export interface Direction{
   name: string
   id: number
-  enum: matrix.VectorDirection
+  enum: Matrix.Direction
   startcorner?: Startcorner[]
 }
 
 export interface Pattern{
   name: string
   id: number
-  enum: matrix.VectorPattern
+  enum: Matrix.Pattern
   direction?: Direction[]
 }
 
-export interface AllLayouts{
+export interface LayoutData{
   pattern?: Pattern[]
 }
 
@@ -42,27 +42,27 @@ function* enumValues<T>(enumObj: { [ key: string ]: T }): IterableIterator<T> {
   }
 }
 
-export function getLayoutData(){
+export function getLayoutData(): LayoutData{
   var pattern: Pattern[] = []
-  for (const patternName of enumValues(matrix.VectorPattern)) {
+  for (const patternName of enumValues(Matrix.Pattern)) {
     var direction: Direction[] = []
     pattern.push({
-      name: matrix.VectorPattern[patternName] + "",
+      name: Matrix.Pattern[patternName] + "",
       id:pattern.length+1,
       enum: patternName,
       direction: direction
     })
-    for (const directionName of enumValues(matrix.VectorDirection)) {
+    for (const directionName of enumValues(Matrix.Direction)) {
       var startcorner:Startcorner[] = []
       direction.push({
-        name: matrix.VectorDirection[directionName] + "",
+        name: Matrix.Direction[directionName] + "",
         id:direction.length+1,
         enum: directionName,
         startcorner: startcorner
       })
-      for (const  startcornerName of enumValues(matrix.MatrixCorner)) {
+      for (const  startcornerName of enumValues(Matrix.Corner)) {
         startcorner.push({
-          name: matrix.MatrixCorner[startcornerName] + "",
+          name: Matrix.Corner[startcornerName] + "",
           id:startcorner.length+1,
           enum: startcornerName,
         })

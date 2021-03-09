@@ -13,116 +13,6 @@ function* generateCoordinates(w: number, h: number) {
   }
 }
 
-/**
- * The four corners of the matrix. The vector must start in one of these corners.
- * @public
- */
-export enum MatrixCorner{
-  /**
-   * Bottom left (x=0, y=0) (default vector start corner)
-   * @public
-   */
-  BottomLeft,
-
-  /**
-   * Bottom right (x=max, y=0)
-   * @public
-   */
-  BottomRight,
-
-  /**
-   * Top left (x=0, y=max)
-   * @public
-   */
-  TopLeft,
-
-  /**
-   * Top right (x=max, y=max)
-   * @public
-   */
-  TopRight
-}
-
-/**
- * The directions the vector can travel across the matrix
- * (beta)
- * @public
- */
-export enum VectorDirection{
-  /**
-   * In the X axis (left / right)
-   */
-  X,
-  /**
-   * In the Y axis (up / down)
-   */
-  Y,
-}
-
-/**
- * The possible patterns the vector can follow to cover the matrix
- * @public
- */
-export enum VectorPattern{
-  /**
-   * The direction of the vector will alternate (forwards and reverse with respect the initial vector direction)
-   */
-  zigzag,
-  /**
-   * The direction of the vector will remain the same (always the same as the initial vector direction)
-   */
-  loop,
-}
-
-/**
- * Parameters for creating a Matrix.
- * Used by {@link Matrix | the Matrix constructor}.
- * (beta)
- * @public
- */
-export interface MatrixConstuctor {
-  /**
-   * Height of the matrix. Default `0`.
-   */
-  height?: number
-  /**
-   * Width of the matrix. Default `0`.
-   */
-  width?: number
-  /**
-   * The corner of the matrix where the vector starts. Default `VectorStartCorner.BottomLeft`
-   */
-  startCorner?: MatrixCorner
-  /**
-   * The initial direction the vector travels from the start corner across
-   * the matrix . Default `VectorDirection.X`
-   */
-  direction?: VectorDirection
-  /**
-   * Matrix pattern. Default `VectorPattern.zigzag`
-   */
-  pattern?: VectorPattern
-}
-
-/**
- * The positions of a value, with it's `x,y` coordinate in the matrix and it's `n` possition in the vector
- * @public
- */
-export interface Position{
-  /**
-   * Position in the vector
-   */
-  n:number
-  /**
-   * x coordinate in the matrix
-   */
-  x:number
-  /**
-   * y coordinate in the matrix
-   */
-  y:number
-}
-
 //   y
 //   ^
 //   |
@@ -137,6 +27,7 @@ export interface Position{
  * @public
  */
 export class Matrix {
+
     /**
      * Height of the matrix
      */
@@ -148,16 +39,16 @@ export class Matrix {
     /**
      * The corner of the matrix where the vector starts
      */
-    start_corner: MatrixCorner
+    start_corner: Matrix.Corner
     /**
      * The initial direction the vector travels from the start corner across
      * the matrix
      */
-    direction: VectorDirection
+    direction: Matrix.Direction
     /**
      * The repeating partern the vector follows to create the matrix
      */
-    pattern: VectorPattern
+    pattern: Matrix.Pattern
 
     /**
      * Creates a new Matrix
@@ -189,18 +80,18 @@ export class Matrix {
      * const matrix = new Matrix({
      *   height: 10,
      *   width: 15,
-     *   pattern: VectorPattern.loop,
+     *   pattern: Matrix.Pattern.loop,
      *   start_corner: VectorStartCorner.TopRight,
-     *   direction: VectorDirection.Y,
+     *   direction: Matrix.Direction.Y,
      * })
      * ```
      */
-    constructor(options: MatrixConstuctor) {
+    constructor(options: Matrix.Constuctor) {
       this.width = options.width || 0
       this.height = options.height || 0
-      this.start_corner = options.startCorner || MatrixCorner.BottomLeft
-      this.direction = options.direction || VectorDirection.X
-      this.pattern = options.pattern || VectorPattern.zigzag
+      this.start_corner = options.startCorner || Matrix.Corner.BottomLeft
+      this.direction = options.direction || Matrix.Direction.X
+      this.pattern = options.pattern || Matrix.Pattern.zigzag
     }
 
     /**
@@ -222,13 +113,13 @@ export class Matrix {
      * @public
      */
     get subVectorLength(): number {
-      return this.direction == VectorDirection.X
+      return this.direction == Matrix.Direction.X
         ? this.width
         : this.height
     }
     // NOTE: For API Extractor don't write documentation for the setter.
     set subVectorLength(newV: number) {
-      this.direction == VectorDirection.X
+      this.direction == Matrix.Direction.X
         ? (this.width = newV)
         : (this.height = newV)
     }
@@ -240,13 +131,13 @@ export class Matrix {
      * @public
      */
     get subVectorCount(): number {
-      return this.direction == VectorDirection.X
+      return this.direction == Matrix.Direction.X
         ? this.height
         : this.width
     }
     // NOTE: For API Extractor don't write documentation for the setter.
     set subVectorCount(newV: number) {
-      this.direction == VectorDirection.X
+      this.direction == Matrix.Direction.X
         ? (this.width = newV)
         : (this.height = newV)
     }
@@ -257,56 +148,56 @@ export class Matrix {
      * @public
      * @returns true or false
      */
-    isTopDown():   boolean {return this.isTopStart() && this.direction == VectorDirection.X}
+    isTopDown():   boolean {return this.isTopStart() && this.direction == Matrix.Direction.X}
     /**
      * Returns whether this matrix has a <b>bottom up</b> pattern
      * (beta)
      * @public
      * @returns true or false
      */
-    isBotomUp():   boolean {return this.isBtmStart() && this.direction == VectorDirection.X}
+    isBotomUp():   boolean {return this.isBtmStart() && this.direction == Matrix.Direction.X}
     /**
      * Returns whether this matrix has a <b>left to right </b> pattern
      * (beta)
      * @public
      * @returns true or false
      */
-    isLeftRight(): boolean {return this.isLefStart() && this.direction == VectorDirection.Y}
+    isLeftRight(): boolean {return this.isLefStart() && this.direction == Matrix.Direction.Y}
     /**
      * Returns whether this matrix has a <b>right to left</b> pattern
      * (beta)
      * @public
      * @returns true or false
      */
-    isRightLeft(): boolean {return this.isRitStart() && this.direction == VectorDirection.Y}
+    isRightLeft(): boolean {return this.isRitStart() && this.direction == Matrix.Direction.Y}
     /**
      * Returns whether this matrix has a pattern starting at the <b>top</b>
      * (beta)
      * @public
      * @returns true or false
      */
-    isTopStart():  boolean {return this.start_corner == MatrixCorner.TopLeft || this.start_corner == MatrixCorner.TopRight}
+    isTopStart():  boolean {return this.start_corner == Matrix.Corner.TopLeft || this.start_corner == Matrix.Corner.TopRight}
     /**
      * Returns whether this matrix has a pattern starting at the <b>bottom</b>
      * (beta)
      * @public
      * @returns true or false
      */
-    isBtmStart():  boolean {return this.start_corner == MatrixCorner.BottomLeft || this.start_corner == MatrixCorner.BottomRight}
+    isBtmStart():  boolean {return this.start_corner == Matrix.Corner.BottomLeft || this.start_corner == Matrix.Corner.BottomRight}
     /**
      * Returns whether this matrix has a pattern starting on the <b>left</b>
      * (beta)
      * @public
      * @returns true or false
      */
-    isLefStart():  boolean {return this.start_corner == MatrixCorner.TopLeft || this.start_corner == MatrixCorner.BottomLeft}
+    isLefStart():  boolean {return this.start_corner == Matrix.Corner.TopLeft || this.start_corner == Matrix.Corner.BottomLeft}
     /**
      * Returns whether this matrix has a pattern starting on the <b>right</b>
      * (beta)
      * @public
      * @returns true or false
      */
-    isRitStart():  boolean {return this.start_corner == MatrixCorner.TopRight || this.start_corner == MatrixCorner.BottomRight}
+    isRitStart():  boolean {return this.start_corner == Matrix.Corner.TopRight || this.start_corner == Matrix.Corner.BottomRight}
 
     /**
      * Return this 1D vector position of a value given it's 2D matrix coordinates
@@ -318,13 +209,13 @@ export class Matrix {
      */
     getVectorIndex(x: number, y: number): number{
       //Correct for start corner (using negative coordinates for now)
-      if ( this.start_corner == MatrixCorner.TopLeft ||
-           this.start_corner == MatrixCorner.TopRight ) {
+      if ( this.start_corner == Matrix.Corner.TopLeft ||
+           this.start_corner == Matrix.Corner.TopRight ) {
         y *= -1
         y += -1
       }
-      if ( this.start_corner == MatrixCorner.BottomRight ||
-           this.start_corner == MatrixCorner.TopRight ) {
+      if ( this.start_corner == Matrix.Corner.BottomRight ||
+           this.start_corner == Matrix.Corner.TopRight ) {
         x *= -1
         x += -1
       }
@@ -336,7 +227,7 @@ export class Matrix {
       }
 
       //Correct for direction
-      if(this.direction === VectorDirection.Y){
+      if(this.direction === Matrix.Direction.Y){
         res = {
           full: x,
           rem: y
@@ -357,7 +248,7 @@ export class Matrix {
       }
 
       //Correct for zigzag
-      if(this.pattern === VectorPattern.zigzag){
+      if(this.pattern === Matrix.Pattern.zigzag){
         if((res.full % 2) != 0){
           res.rem = this.subVectorLength - res.rem - 1
         }
@@ -372,13 +263,125 @@ export class Matrix {
      * @public
      * @returns - array of Position items
      */
-    getAllPositions() : Position[]{
-      var res:Position[]=[]
+    getAllPositions() : Matrix.Position[]{
+      var res:Matrix.Position[]=[]
       for(let c of generateCoordinates(this.width, this.height)){
         let n = this.getVectorIndex(c.x, c.y)
         res[n]={n, ...c}
       }
       return res
     }
+}
 
+export namespace Matrix {
+
+  /**
+   * The four corners of the matrix. The vector must start in one of these corners.
+   * @public
+   */
+  export enum Corner{
+    /**
+     * Bottom left (x=0, y=0) (default vector start corner)
+     * @public
+     */
+    BottomLeft,
+
+    /**
+     * Bottom right (x=max, y=0)
+     * @public
+     */
+    BottomRight,
+
+    /**
+     * Top left (x=0, y=max)
+     * @public
+     */
+    TopLeft,
+
+    /**
+     * Top right (x=max, y=max)
+     * @public
+     */
+    TopRight
+  }
+
+  /**
+   * The directions the vector can travel across the matrix
+   * (beta)
+   * @public
+   */
+  export enum Direction{
+    /**
+     * In the X axis (left / right)
+     */
+    X,
+    /**
+     * In the Y axis (up / down)
+     */
+    Y,
+  }
+
+  /**
+   * The possible patterns the vector can follow to cover the matrix
+   * @public
+   */
+  export enum Pattern{
+    /**
+     * The direction of the vector will alternate (forwards and reverse with respect the initial vector direction)
+     */
+    zigzag,
+    /**
+     * The direction of the vector will remain the same (always the same as the initial vector direction)
+     */
+    loop,
+  }
+
+  /**
+   * Parameters for creating a Matrix.
+   * Used by {@link Matrix | the Matrix constructor}.
+   * (beta)
+   * @public
+   */
+  export interface Constuctor {
+    /**
+     * Height of the matrix. Default `0`.
+     */
+    height?: number
+    /**
+     * Width of the matrix. Default `0`.
+     */
+    width?: number
+    /**
+     * The corner of the matrix where the vector starts. Default `VectorStartCorner.BottomLeft`
+     */
+    startCorner?: Corner
+    /**
+     * The initial direction the vector travels from the start corner across
+     * the matrix . Default `Matrix.Direction.X`
+     */
+    direction?: Direction
+    /**
+     * Matrix pattern. Default `Matrix.Pattern.zigzag`
+     */
+    pattern?: Pattern
+  }
+
+  /**
+   * The positions of a value, with it's `x,y` coordinate in the matrix and it's `n` possition in the vector
+   * @public
+   */
+  export interface Position{
+    /**
+     * Position in the vector
+     */
+    n:number
+    /**
+     * x coordinate in the matrix
+     */
+    x:number
+    /**
+     * y coordinate in the matrix
+     */
+    y:number
+  }
 }

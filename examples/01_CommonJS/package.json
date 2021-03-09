@@ -1,0 +1,17 @@
+{
+  "name": "matrix-scan-CommonJS-example",
+  "version": "1.0.0",
+  "exampleName": "CommonJS",
+  "description": "CommonJS, typical in node previous to v12",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "matrix-scan": "file:../../"
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "author": ""
+}

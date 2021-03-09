@@ -1,16 +1,16 @@
 
 import { expect } from "chai";
-import * as matrix from "../lib/index"
+import { Matrix } from "../lib/index"
 
 describe('Matrix', function() {
   it('should have a default constuctor', function() {
-    const m = new matrix.Matrix({
+    const m = new Matrix({
     })
     expect(m.fullVectorLength).equal(0)
   })
 
   it('should constuct with width and height', function() {
-    const m = new matrix.Matrix({
+    const m = new Matrix({
       width: 4,
       height: 6
     })
@@ -20,17 +20,17 @@ describe('Matrix', function() {
 
   //3x3 matricies
   interface Test {
-    startCorner: matrix.MatrixCorner,
-    stripPattern:  matrix.VectorPattern,
-    stripDirection: matrix.VectorDirection,
+    startCorner: Matrix.Corner,
+    stripPattern:  Matrix.Pattern,
+    stripDirection: Matrix.Direction,
     matrix: number[][]
   }
   const tests: Test[] =
     [
     {
-      startCorner: matrix.MatrixCorner.TopLeft,
-      stripPattern: matrix.VectorPattern.zigzag,
-      stripDirection: matrix.VectorDirection.X,
+      startCorner: Matrix.Corner.TopLeft,
+      stripPattern: Matrix.Pattern.zigzag,
+      stripDirection: Matrix.Direction.X,
       matrix: [
         [0, 1, 2],
         [5, 4, 3],
@@ -38,9 +38,9 @@ describe('Matrix', function() {
       ]
     },
     {
-      startCorner: matrix.MatrixCorner.TopLeft,
-      stripPattern: matrix.VectorPattern.zigzag,
-      stripDirection: matrix.VectorDirection.Y,
+      startCorner: Matrix.Corner.TopLeft,
+      stripPattern: Matrix.Pattern.zigzag,
+      stripDirection: Matrix.Direction.Y,
       matrix: [
         [0, 5, 6],
         [1, 4, 7],
@@ -48,9 +48,9 @@ describe('Matrix', function() {
       ]
     },
     {
-      startCorner: matrix.MatrixCorner.TopLeft,
-      stripPattern: matrix.VectorPattern.loop,
-      stripDirection: matrix.VectorDirection.X,
+      startCorner: Matrix.Corner.TopLeft,
+      stripPattern: Matrix.Pattern.loop,
+      stripDirection: Matrix.Direction.X,
       matrix: [
         [0, 1, 2],
         [3, 4, 5],
@@ -58,9 +58,9 @@ describe('Matrix', function() {
       ]
     },
     {
-      startCorner: matrix.MatrixCorner.TopLeft,
-      stripPattern: matrix.VectorPattern.loop,
-      stripDirection: matrix.VectorDirection.Y,
+      startCorner: Matrix.Corner.TopLeft,
+      stripPattern: Matrix.Pattern.loop,
+      stripDirection: Matrix.Direction.Y,
       matrix: [
         [0, 3, 6],
         [1, 4, 7],
@@ -69,9 +69,9 @@ describe('Matrix', function() {
     },
 
     {
-      startCorner: matrix.MatrixCorner.TopRight,
-      stripPattern: matrix.VectorPattern.zigzag,
-      stripDirection: matrix.VectorDirection.X,
+      startCorner: Matrix.Corner.TopRight,
+      stripPattern: Matrix.Pattern.zigzag,
+      stripDirection: Matrix.Direction.X,
       matrix: [
         [2, 1, 0],
         [3, 4, 5],
@@ -79,9 +79,9 @@ describe('Matrix', function() {
       ]
     },
     {
-      startCorner: matrix.MatrixCorner.TopRight,
-      stripPattern: matrix.VectorPattern.zigzag,
-      stripDirection: matrix.VectorDirection.Y,
+      startCorner: Matrix.Corner.TopRight,
+      stripPattern: Matrix.Pattern.zigzag,
+      stripDirection: Matrix.Direction.Y,
       matrix: [
         [6, 5, 0],
         [7, 4, 1],
@@ -89,9 +89,9 @@ describe('Matrix', function() {
       ]
     },
     {
-      startCorner: matrix.MatrixCorner.TopRight,
-      stripPattern: matrix.VectorPattern.loop,
-      stripDirection: matrix.VectorDirection.X,
+      startCorner: Matrix.Corner.TopRight,
+      stripPattern: Matrix.Pattern.loop,
+      stripDirection: Matrix.Direction.X,
       matrix: [
         [2, 1, 0],
         [5, 4, 3],
@@ -99,9 +99,9 @@ describe('Matrix', function() {
       ]
     },
     {
-      startCorner: matrix.MatrixCorner.TopRight,
-      stripPattern: matrix.VectorPattern.loop,
-      stripDirection: matrix.VectorDirection.Y,
+      startCorner: Matrix.Corner.TopRight,
+      stripPattern: Matrix.Pattern.loop,
+      stripDirection: Matrix.Direction.Y,
       matrix: [
         [6, 3, 0],
         [7, 4, 1],
@@ -110,9 +110,9 @@ describe('Matrix', function() {
     },
 
     {
-      startCorner: matrix.MatrixCorner.BottomLeft,
-      stripPattern: matrix.VectorPattern.zigzag,
-      stripDirection: matrix.VectorDirection.X,
+      startCorner: Matrix.Corner.BottomLeft,
+      stripPattern: Matrix.Pattern.zigzag,
+      stripDirection: Matrix.Direction.X,
       matrix: [
         [6, 7, 8],
         [5, 4, 3],
@@ -120,9 +120,9 @@ describe('Matrix', function() {
       ]
     },
     {
-      startCorner: matrix.MatrixCorner.BottomLeft,
-      stripPattern: matrix.VectorPattern.zigzag,
-      stripDirection: matrix.VectorDirection.Y,
+      startCorner: Matrix.Corner.BottomLeft,
+      stripPattern: Matrix.Pattern.zigzag,
+      stripDirection: Matrix.Direction.Y,
       matrix: [
         [2, 3, 8],
         [1, 4, 7],
@@ -131,9 +131,9 @@ describe('Matrix', function() {
     },
     //THE DEFAULT
     {
-      startCorner: matrix.MatrixCorner.BottomLeft,
-      stripPattern: matrix.VectorPattern.loop,
-      stripDirection: matrix.VectorDirection.X,
+      startCorner: Matrix.Corner.BottomLeft,
+      stripPattern: Matrix.Pattern.loop,
+      stripDirection: Matrix.Direction.X,
       matrix: [
         [6, 7, 8],
         [3, 4, 5],
@@ -141,9 +141,9 @@ describe('Matrix', function() {
       ]
     },
     {
-      startCorner: matrix.MatrixCorner.BottomLeft,
-      stripPattern: matrix.VectorPattern.loop,
-      stripDirection: matrix.VectorDirection.Y,
+      startCorner: Matrix.Corner.BottomLeft,
+      stripPattern: Matrix.Pattern.loop,
+      stripDirection: Matrix.Direction.Y,
       matrix: [
         [2, 5, 8],
         [1, 4, 7],
@@ -152,9 +152,9 @@ describe('Matrix', function() {
     },
 
     {
-      startCorner: matrix.MatrixCorner.BottomRight,
-      stripPattern: matrix.VectorPattern.zigzag,
-      stripDirection: matrix.VectorDirection.X,
+      startCorner: Matrix.Corner.BottomRight,
+      stripPattern: Matrix.Pattern.zigzag,
+      stripDirection: Matrix.Direction.X,
       matrix: [
         [8, 7, 6],
         [3, 4, 5],
@@ -162,9 +162,9 @@ describe('Matrix', function() {
       ]
     },
     {
-      startCorner: matrix.MatrixCorner.BottomRight,
-      stripPattern: matrix.VectorPattern.zigzag,
-      stripDirection: matrix.VectorDirection.Y,
+      startCorner: Matrix.Corner.BottomRight,
+      stripPattern: Matrix.Pattern.zigzag,
+      stripDirection: Matrix.Direction.Y,
       matrix: [
         [8, 3, 2],
         [7, 4, 1],
@@ -172,9 +172,9 @@ describe('Matrix', function() {
       ]
     },
     {
-      startCorner: matrix.MatrixCorner.BottomRight,
-      stripPattern: matrix.VectorPattern.loop,
-      stripDirection: matrix.VectorDirection.X,
+      startCorner: Matrix.Corner.BottomRight,
+      stripPattern: Matrix.Pattern.loop,
+      stripDirection: Matrix.Direction.X,
       matrix: [
         [8, 7, 6],
         [5, 4, 3],
@@ -182,9 +182,9 @@ describe('Matrix', function() {
       ]
     },
     {
-      startCorner: matrix.MatrixCorner.BottomRight,
-      stripPattern: matrix.VectorPattern.loop,
-      stripDirection: matrix.VectorDirection.Y,
+      startCorner: Matrix.Corner.BottomRight,
+      stripPattern: Matrix.Pattern.loop,
+      stripDirection: Matrix.Direction.Y,
       matrix: [
         [8, 5, 2],
         [7, 4, 1],
@@ -192,9 +192,9 @@ describe('Matrix', function() {
       ]
     },
     {
-      startCorner: matrix.MatrixCorner.BottomLeft,
-      stripPattern: matrix.VectorPattern.zigzag,
-      stripDirection: matrix.VectorDirection.X,
+      startCorner: Matrix.Corner.BottomLeft,
+      stripPattern: Matrix.Pattern.zigzag,
+      stripDirection: Matrix.Direction.X,
       matrix: [
         [16, 17, 18, 19],
         [15, 14, 13, 12],
@@ -203,9 +203,9 @@ describe('Matrix', function() {
         [0, 1, 2, 3],
       ]
     },{
-      startCorner: matrix.MatrixCorner.BottomLeft,
-      stripPattern: matrix.VectorPattern.loop,
-      stripDirection: matrix.VectorDirection.X,
+      startCorner: Matrix.Corner.BottomLeft,
+      stripPattern: Matrix.Pattern.loop,
+      stripDirection: Matrix.Direction.X,
       matrix: [
         [0]
       ]
@@ -214,8 +214,8 @@ describe('Matrix', function() {
   tests.forEach(function(test: Test) {
    var height = test.matrix.length
    var width =  test.matrix[0].length
-    it(`should create ${width}x${height} with '${matrix.MatrixCorner[test.startCorner]}' start, '${matrix.VectorPattern[test.stripPattern]}' pattern, '${matrix.VectorDirection[test.stripDirection]}' direction`, function() {
-      var m = new matrix.Matrix({
+    it(`should create ${width}x${height} with '${Matrix.Corner[test.startCorner]}' start, '${Matrix.Pattern[test.stripPattern]}' pattern, '${Matrix.Direction[test.stripDirection]}' direction`, function() {
+      var m = new Matrix({
         width,
         height,
         startCorner: test.startCorner,

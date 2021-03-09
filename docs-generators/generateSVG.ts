@@ -1,9 +1,10 @@
 
-import * as matrix from "../lib/index"
+import { Matrix } from '../lib/index'
 import * as d3 from 'd3'
 import * as jsdom from 'jsdom'
 import * as fs from 'fs'
-import * as path from "path"
+import * as path from 'path'
+import {LayoutData} from './getLayoutData'
 
 var MATRIX_WIDTH:number = 4               // pixels wide
 var MATRIX_HEIGHT:number = 4              // pixels high
@@ -13,10 +14,10 @@ var PIXEL_SIZE:number = 40     // max size for each pixel in a cell
 
 // Create an array of position pairs
 interface PositionPair{
-  start: matrix.Position
-  end: matrix.Position
+  start: Matrix.Position
+  end: Matrix.Position
 }
-function generatePositionPairs(positions: matrix.Position[]) : PositionPair[]{
+function generatePositionPairs(positions: Matrix.Position[]) : PositionPair[]{
   var pairs:PositionPair[]=[]
   for(var i=0; i<positions.length-1; i++){
     pairs.push({start:positions[i], end:positions[i+1]})
@@ -25,7 +26,7 @@ function generatePositionPairs(positions: matrix.Position[]) : PositionPair[]{
 }
 
 // Build the svg image
-export function buildSVGofMatrix(matrix: matrix.Matrix) : string {
+export function buildSVGofMatrix(matrix: Matrix) : string {
   const { JSDOM } = jsdom
   const dom = new JSDOM(`<!DOCTYPE html><body></body>`)
 
@@ -43,17 +44,17 @@ export function buildSVGofMatrix(matrix: matrix.Matrix) : string {
       .domain([0, matrix.height])
       .range([IMAGE_SIZE, 0])
 
-  const x = (d:matrix.Position)=>{return xScale(d.x)}
-  const y = (d:matrix.Position)=>{return yScale(d.y)}
+  const x = (d:Matrix.Position)=>{return xScale(d.x)}
+  const y = (d:Matrix.Position)=>{return yScale(d.y)}
 
   const cellW = Math.abs(xScale(1) - xScale(0))
   const cellH = Math.abs(yScale(1) - yScale(0))
 
-  const xCenter = (d:matrix.Position)=>{return xScale(d.x)+cellW/2}
-  const yCenter = (d:matrix.Position)=>{return yScale(d.y)-cellH/2}
-  const center = (d: matrix.Position):[number,number] => ([xCenter(d), yCenter(d)])
+  const xCenter = (d:Matrix.Position)=>{return xScale(d.x)+cellW/2}
+  const yCenter = (d:Matrix.Position)=>{return yScale(d.y)-cellH/2}
+  const center = (d: Matrix.Position):[number,number] => ([xCenter(d), yCenter(d)])
 
-  const centerOffset = (s: matrix.Position, e: matrix.Position) => {
+  const centerOffset = (s: Matrix.Position, e: Matrix.Position) => {
     var p1 = center(s)
     var p2 = center(e)
     var xD = p1[0] - p2[0]
@@ -154,12 +155,12 @@ export function buildSVGofMatrix(matrix: matrix.Matrix) : string {
   return body.html();
 }
 
-export function generateSVGs(layoutData, output_dir){
+export function generateSVGs(layoutData: LayoutData, output_dir: string){
   //SVGs
   layoutData.pattern?.forEach(function(pattern){
     pattern.direction?.forEach(function(direction){
       direction.startcorner?.forEach(function(start_corner){
-        const amatrix = new matrix.Matrix({
+        const amatrix = new Matrix({
           width: MATRIX_WIDTH,
           height: MATRIX_HEIGHT,
           direction: direction.enum,
