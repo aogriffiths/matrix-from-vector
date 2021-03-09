@@ -29,7 +29,7 @@ export class Matrix {
     width: number;
 }
 
-// @public (undocumented)
+// @public
 export namespace Matrix {
     export interface Constuctor {
         direction?: Direction;

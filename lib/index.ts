@@ -273,6 +273,11 @@ export class Matrix {
     }
 }
 
+/**
+ * A matrix based on a vector
+ * (beta)
+ * @public
+ */
 export namespace Matrix {
 
   /**
@@ -338,7 +343,7 @@ export namespace Matrix {
 
   /**
    * Parameters for creating a Matrix.
-   * Used by {@link Matrix | the Matrix constructor}.
+   * Used by {@link (Matrix:class) | the Matrix constructor}.
    * (beta)
    * @public
    */

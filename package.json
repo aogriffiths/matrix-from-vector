@@ -5,10 +5,10 @@
   "main": "dist/index.js",
   "types": "dist/index.d.js",
   "scripts": {
-    "build": "npm run build:tsc && npm run build:api-extract && npm run build:api-docs && npm run build:gen-docs",
+    "build": "npm run build:tsc  && npm run build:gen-docs && npm run build:api-extract && npm run build:api-docs",
     "build:tsc": "tsc",
     "build:tsc-watch": "tsc -w",
-    "build:api-extract": "mkdir -p etc; api-extractor run --local --verbose",
+    "build:api-extract": "rm -rf temp && mkdir -p etc && api-extractor run --local --verbose",
     "build:api-docs": "api-documenter markdown --input-folder temp --output-folder docs/generated/api",
     "build:gen-docs": "cd docs-generators && npm start",
     "prepare": "npm run build",
