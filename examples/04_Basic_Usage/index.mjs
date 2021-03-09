@@ -1,6 +1,8 @@
 import { Matrix } from 'matrix-scan'
+
+// SPLIT
 /**
- * Using new style ECMAScript module (ESM) import, Supported since  Node.js 13.2.0
+ * Doing something
  *
  * @heading ESM Import
  */

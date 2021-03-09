@@ -1,5 +1,5 @@
 /**
- * Using new style ECMAScript module (ESM) import, Supported since  Node.js 13.2.0
+ * Using new style ECMAScript module (ESM) import, supported since  Node.js 13.2.0
  *
  * @heading ESM Import
  */

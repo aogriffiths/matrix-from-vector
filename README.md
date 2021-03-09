@@ -68,7 +68,7 @@ npm install matrix-scan
 ```
 
 ### CommonJS 
-Using old style CommonJS (CJS) require()
+Using old style CommonJS (CJS) `require()`
 
 ```js
 var ms = require('matrix-scan')
@@ -77,7 +77,7 @@ var m = new Matrix({height:3, width:3})
 ```
 
 ### ESM Import
-Using new style ECMAScript module (ESM) import, Supported since  Node.js 13.2.0
+Using new style ECMAScript module (ESM) import, supported since  Node.js 13.2.0
 
 ```js
 import { Matrix } from 'matrix-scan'

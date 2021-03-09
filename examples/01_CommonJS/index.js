@@ -1,5 +1,5 @@
 /**
- * Using old style CommonJS (CJS) require()
+ * Using old style CommonJS (CJS) `require()`
  *
  * @heading CommonJS
  */
