@@ -1,6 +1,6 @@
 {
   "name": "matrix-scan",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Scan 2D matricies in to 1D arrays",
   "main": "dist/index.js",
   "types": "dist/index.d.js",
