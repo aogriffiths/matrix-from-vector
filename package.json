@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.js",
   "repository": {
-      "type": "git",
-      "url": "https://github.com/aogriffiths/matrix-scan"
+    "type": "git",
+    "url": "https://github.com/aogriffiths/matrix-scan"
   },
   "scripts": {
     "build": "npm run build:tsc  && npm run build:gen-docs && npm run build:api-extract && npm run build:api-docs",
@@ -43,7 +43,5 @@
     "jsdom": "^16.4.0",
     "request": "^2.88.2"
   },
-  "dependencies": {
-
-  }
+  "dependencies": {}
 }
