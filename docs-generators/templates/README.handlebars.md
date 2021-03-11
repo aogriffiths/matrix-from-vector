@@ -49,7 +49,7 @@ We use the following definitions:
 
 ## 🔢 Supported layouts
 
-The layouts this library supports can be found [here](docs/generated/layouts/layouts.md). Here's an example:
+The layouts this library supports can be found [here](https://github.com/aogriffiths/matrix-scan/blob/master/docs/generated/layouts/layouts.md). Here's an example:
 
 - starting: **BottomLeft** (see green box)
 - direction: **X** (see green arrow)
@@ -78,8 +78,8 @@ npm install matrix-scan
 
 ## 🗂 Documentation
 
-* [Layouts](docs/generated/layouts/layouts.md)
-* [API](docs/generated/api/matrix-scan.md)
+* [Layouts](https://github.com/aogriffiths/matrix-scan/blob/master/docs/generated/layouts/layouts.md)
+* [API](https://github.com/aogriffiths/matrix-scan/blob/master/docs/generated/api/matrix-scan.md)
 
 ## 🌎 Real world uses
 
