@@ -4,7 +4,7 @@
 
 ## Matrix.Direction enum
 
-The directions the vector can travel across the matrix (beta)
+The directions the array can travel across the matrix (beta)
 
 <b>Signature:</b>
 

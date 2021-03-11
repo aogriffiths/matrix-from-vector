@@ -9,5 +9,7 @@ Height of the matrix
 <b>Signature:</b>
 
 ```typescript
-height: number;
+get height(): number;
+
+set height(v: number);
 ```

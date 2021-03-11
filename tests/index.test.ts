@@ -1,241 +1,106 @@
 
 import { expect } from "chai";
-import { Matrix } from "../lib/index"
+import { Matrix, generateCoordinates } from "../lib/index"
+import  {Test, testCases} from "./matrixTestCases"
 
 describe('Matrix', function() {
-  it('should have a default constuctor', function() {
-    const m = new Matrix({
-    })
-    expect(m.fullArrayLength).equal(0)
-  })
-
-  it('should constuct with width and height', function() {
-    const m = new Matrix({
-      width: 4,
-      height: 6
-    })
-    expect(m.fullArrayLength).equal(4*6)
-    expect(m.subArrayCount * m.subArrayLength).equal(4*6)
-  })
-
-  //3x3 matricies
-  interface Test {
-    startCorner: Matrix.Corner,
-    stripPattern:  Matrix.Pattern,
-    stripDirection: Matrix.Direction,
-    matrix: number[][]
-  }
-  const tests: Test[] =
-    [
-    {
-      startCorner: Matrix.Corner.TopLeft,
-      stripPattern: Matrix.Pattern.zigzag,
-      stripDirection: Matrix.Direction.X,
-      matrix: [
-        [0, 1, 2],
-        [5, 4, 3],
-        [6, 7, 8],
-      ]
-    },
-    {
-      startCorner: Matrix.Corner.TopLeft,
-      stripPattern: Matrix.Pattern.zigzag,
-      stripDirection: Matrix.Direction.Y,
-      matrix: [
-        [0, 5, 6],
-        [1, 4, 7],
-        [2, 3, 8],
-      ]
-    },
-    {
-      startCorner: Matrix.Corner.TopLeft,
-      stripPattern: Matrix.Pattern.loop,
-      stripDirection: Matrix.Direction.X,
-      matrix: [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-      ]
-    },
-    {
-      startCorner: Matrix.Corner.TopLeft,
-      stripPattern: Matrix.Pattern.loop,
-      stripDirection: Matrix.Direction.Y,
-      matrix: [
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-      ]
-    },
-
-    {
-      startCorner: Matrix.Corner.TopRight,
-      stripPattern: Matrix.Pattern.zigzag,
-      stripDirection: Matrix.Direction.X,
-      matrix: [
-        [2, 1, 0],
-        [3, 4, 5],
-        [8, 7, 6],
-      ]
-    },
-    {
-      startCorner: Matrix.Corner.TopRight,
-      stripPattern: Matrix.Pattern.zigzag,
-      stripDirection: Matrix.Direction.Y,
-      matrix: [
-        [6, 5, 0],
-        [7, 4, 1],
-        [8, 3, 2],
-      ]
-    },
-    {
-      startCorner: Matrix.Corner.TopRight,
-      stripPattern: Matrix.Pattern.loop,
-      stripDirection: Matrix.Direction.X,
-      matrix: [
-        [2, 1, 0],
-        [5, 4, 3],
-        [8, 7, 6],
-      ]
-    },
-    {
-      startCorner: Matrix.Corner.TopRight,
-      stripPattern: Matrix.Pattern.loop,
-      stripDirection: Matrix.Direction.Y,
-      matrix: [
-        [6, 3, 0],
-        [7, 4, 1],
-        [8, 5, 2],
-      ]
-    },
-
-    {
-      startCorner: Matrix.Corner.BottomLeft,
-      stripPattern: Matrix.Pattern.zigzag,
-      stripDirection: Matrix.Direction.X,
-      matrix: [
-        [6, 7, 8],
-        [5, 4, 3],
-        [0, 1, 2],
-      ]
-    },
-    {
-      startCorner: Matrix.Corner.BottomLeft,
-      stripPattern: Matrix.Pattern.zigzag,
-      stripDirection: Matrix.Direction.Y,
-      matrix: [
-        [2, 3, 8],
-        [1, 4, 7],
-        [0, 5, 6],
-      ]
-    },
-    //THE DEFAULT
-    {
-      startCorner: Matrix.Corner.BottomLeft,
-      stripPattern: Matrix.Pattern.loop,
-      stripDirection: Matrix.Direction.X,
-      matrix: [
-        [6, 7, 8],
-        [3, 4, 5],
-        [0, 1, 2],
-      ]
-    },
-    {
-      startCorner: Matrix.Corner.BottomLeft,
-      stripPattern: Matrix.Pattern.loop,
-      stripDirection: Matrix.Direction.Y,
-      matrix: [
-        [2, 5, 8],
-        [1, 4, 7],
-        [0, 3, 6],
-      ]
-    },
-
-    {
-      startCorner: Matrix.Corner.BottomRight,
-      stripPattern: Matrix.Pattern.zigzag,
-      stripDirection: Matrix.Direction.X,
-      matrix: [
-        [8, 7, 6],
-        [3, 4, 5],
-        [2, 1, 0],
-      ]
-    },
-    {
-      startCorner: Matrix.Corner.BottomRight,
-      stripPattern: Matrix.Pattern.zigzag,
-      stripDirection: Matrix.Direction.Y,
-      matrix: [
-        [8, 3, 2],
-        [7, 4, 1],
-        [6, 5, 0],
-      ]
-    },
-    {
-      startCorner: Matrix.Corner.BottomRight,
-      stripPattern: Matrix.Pattern.loop,
-      stripDirection: Matrix.Direction.X,
-      matrix: [
-        [8, 7, 6],
-        [5, 4, 3],
-        [2, 1, 0],
-      ]
-    },
-    {
-      startCorner: Matrix.Corner.BottomRight,
-      stripPattern: Matrix.Pattern.loop,
-      stripDirection: Matrix.Direction.Y,
-      matrix: [
-        [8, 5, 2],
-        [7, 4, 1],
-        [6, 3, 0],
-      ]
-    },
-    {
-      startCorner: Matrix.Corner.BottomLeft,
-      stripPattern: Matrix.Pattern.zigzag,
-      stripDirection: Matrix.Direction.X,
-      matrix: [
-        [16, 17, 18, 19],
-        [15, 14, 13, 12],
-        [8, 9, 10, 11],
-        [7, 6, 5, 4],
-        [0, 1, 2, 3],
-      ]
-    },{
-      startCorner: Matrix.Corner.BottomLeft,
-      stripPattern: Matrix.Pattern.loop,
-      stripDirection: Matrix.Direction.X,
-      matrix: [
-        [0]
-      ]
-    },
-  ]
-  tests.forEach(function(test: Test) {
-   var height = test.matrix.length
-   var width =  test.matrix[0].length
-    it(`should create ${width}x${height} with '${Matrix.Corner[test.startCorner]}' start, '${Matrix.Pattern[test.stripPattern]}' pattern, '${Matrix.Direction[test.stripDirection]}' direction`, function() {
-      var m = new Matrix({
-        width,
-        height,
-        startCorner: test.startCorner,
-        pattern: test.stripPattern,
-        direction: test.stripDirection,
+  describe('#new', function() {
+    it('should have a default constuctor', function() {
+      const m = new Matrix({
       })
-      expect(m.fullArrayLength).equal(height * width)
-      var actualmatrix: number[][]
-      actualmatrix = new Array(height)
-      for(var jr = 0; jr <  height; jr++){
-        var j = height - jr - 1
-        actualmatrix[jr] = new Array(width);
-        for(var i = 0; i<width;i++){
-          actualmatrix[jr][i]=m.getVectorIndex(i,j)
-        }
-      }
-      //console.log(actualmatrix)
-      //console.log(test.matrix)
-      expect(actualmatrix).to.eql(test.matrix)
+      expect(m.fullArrayLength).equal(0)
+    })
+
+    it('should constuct with width and height', function() {
+      const m = new Matrix({
+        width: 4,
+        height: 6
+      })
+      expect(m.fullArrayLength).equal(4*6)
+      expect(m.subArrayCount * m.subArrayLength).equal(4*6)
     })
   })
 
+
+  testCases.forEach(function(test){
+    var height = test.matrix.length
+    var width =  test.matrix[0].length
+    describe(`${width}x${height}; ${Matrix.Corner[test.startCorner]}; ${Matrix.Pattern[test.stripPattern]}; ${Matrix.Direction[test.stripDirection]}`, function() {
+      var matricies : {m:Matrix, name:string}[]= []
+      matricies.push({
+        name: "no chaching",
+        m: new Matrix({
+          width,
+          height,
+          startCorner: test.startCorner,
+          pattern: test.stripPattern,
+          direction: test.stripDirection,
+          cacheAlgorithm: false,
+          cacheData: false
+        })
+      })
+
+      matricies.push({
+       name: "caching the algorithm",
+       m: new Matrix({
+         width,
+         height,
+         startCorner: test.startCorner,
+         pattern: test.stripPattern,
+         direction: test.stripDirection,
+         cacheAlgorithm: true,
+         cacheData: false
+       })
+      })
+
+      matricies.push({
+       name: "caching the data",
+       m: new Matrix({
+         width,
+         height,
+         startCorner: test.startCorner,
+         pattern: test.stripPattern,
+         direction: test.stripDirection,
+         cacheAlgorithm: true,
+         cacheData: true
+       })
+      })
+
+      describe('#getArrayIndex', function() {
+        matricies.forEach(function (matrix){
+          it(`should be correct with ${matrix.name}`, function() {
+            expect(matrix.m.fullArrayLength).equal(height * width)
+            var matrix_produced: number[][] = Array.from(Array(height), () => new Array(width))
+            for(let coord of generateCoordinates(width, height)){
+              matrix_produced[coord.yReverse][coord.x]=matrix.m.getArrayIndex(coord.x, coord.y)
+            }
+            expect(matrix_produced).to.eql(test.matrix)
+          })
+        })
+      })
+
+      describe('#setValue', function() {
+        let matrix = new Matrix({
+          width,
+          height,
+          startCorner: test.startCorner,
+          pattern: test.stripPattern,
+          direction: test.stripDirection
+        })
+        let array: string[] = []
+        matrix.useArray(array)
+
+        it(`should set the correct value in an array`, function() {
+          for(let coord of generateCoordinates(width, height)){
+            let index = test.matrix[coord.yReverse][coord.x]
+            let value = `${coord.x}_${coord.y}_${index}`
+            expect(array[index]).to.be.undefined
+            matrix.setValue(coord.x, coord.y, value)
+            expect(array[index]).to.equal(value)
+          }
+        })
+      })
+
+    })
+  })
 })

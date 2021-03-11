@@ -1,6 +1,6 @@
 {
   "name": "matrix-scan",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Scan 2D matricies in to 1D arrays",
   "main": "dist/index.js",
   "types": "dist/index.d.js",
@@ -12,6 +12,7 @@
     "build:api-docs": "api-documenter markdown --input-folder temp --output-folder docs/generated/api",
     "build:gen-docs": "cd docs-generators && npm start",
     "prepare": "npm run build",
+    "benchmark": "cd benchmark; npm start",
     "test": "npm run test:code && npm run test:examples",
     "test:examples": "cd examples && npm run test",
     "test:code": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'"
@@ -26,6 +27,7 @@
     "@types/jsdom": "^16.2.6",
     "@types/mocha": "^8.2.1",
     "@types/npm": "^2.0.31",
+    "benchmark": "^2.1.4",
     "chai": "^4.3.0",
     "handlebars": "^4.7.7",
     "mocha": "^8.3.0",

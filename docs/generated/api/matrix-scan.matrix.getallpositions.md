@@ -4,7 +4,7 @@
 
 ## Matrix.getAllPositions() method
 
-Return all value positions with the `x,y` coordinates in the matrix and thier `n` possition in the vector
+Return all value positions with the `x,y` coordinates in the matrix and thier `n` possition in the array
 
 <b>Signature:</b>
 

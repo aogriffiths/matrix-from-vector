@@ -9,5 +9,7 @@ Width of the matrix
 <b>Signature:</b>
 
 ```typescript
-width: number;
+get width(): number;
+
+set width(v: number);
 ```

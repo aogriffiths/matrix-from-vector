@@ -5,13 +5,54 @@
  * (beta)
  * @internal
  */
-function* generateCoordinates(w: number, h: number) {
+export function* generateCoordinates(w: number, h: number) {
   for(var j:number = 0; j<h; j++){
     for(var i:number = 0; i<w; i++){
-      yield {x:i, y:j}
+      yield {x:i, y:j, xReverse:w - i - 1, yReverse: h - j - 1}
     }
   }
 }
+
+/**
+ * memoizeMatrixIndexGetter
+ * Utiltiy function to memoize a getArrayIndex(x,y) function
+ * (beta)
+ * @internal
+ */
+const memoizeMatrixIndexGetter = (fn: indexGetterMemberFunction, matrix: Matrix) => {
+  let cache : number[] = []
+  let width = matrix.width
+  return (x: number, y: number) => {
+    let cache_i = x + y * width
+    if (cache[cache_i] == undefined) {
+      cache[cache_i] = fn.call(matrix, x, y)
+    }
+    return cache[cache_i]
+  }
+}
+
+/**
+ * indexGetterMemberFunction
+ * Interfaces for an indexGetter function
+ * (beta)
+ * @internal
+ */
+interface indexGetterMemberFunction {
+    (x: number, y: number): number
+};
+
+
+/**
+ * indexGetterMemberFunction
+ * Interfaces for an indexGetter function
+ * (beta)
+ * @internal
+ */
+interface ArrayLike<T>{
+   setValue(index: number, value: T) : void
+   getValue(index: number) : T
+};
+
 
 //   y
 //   ^
@@ -22,33 +63,130 @@ function* generateCoordinates(w: number, h: number) {
 //   BL. .BR  -> x
 
 /**
- * A matrix based on a vector
+ * A matrix based on a array
  * (beta)
  * @public
  */
 export class Matrix {
 
     /**
+     * Internal state for: Height of the matrix
+     */
+    _height: number = 0
+    /**
+     * Internal state for: Width of the matrix
+     */
+    _width: number = 0
+    /**
+     * Internal state for: The corner of the matrix where the array starts
+     */
+    _startCorner: Matrix.Corner = Matrix.Corner.BottomLeft
+    /**
+     * Internal state for: The initial direction the array travels from the start corner across the matrix
+     */
+    _direction: Matrix.Direction = Matrix.Direction.X
+    /**
+     * Internal state for: The repeating partern the array follows to create the matrix
+     */
+    _pattern: Matrix.Pattern = Matrix.Pattern.zigzag
+
+    /**
+     * cacheAlgorithm
+     */
+    _cacheAlgorithm: boolean = true
+
+    /**
+     * cacheAlgorithm
+     */
+    _cacheData: boolean = false
+
+    /**
      * Height of the matrix
      */
-    height: number
+    get height(): number{
+      return this._height
+    }
+    set height(v: number){
+      this._height = v
+      this.updateGetArrayIndex()
+    }
+
     /**
      * Width of the matrix
      */
-    width: number
+    get width(): number{
+      return this._width
+    }
+    set width(v: number){
+      this._width = v
+      this.updateGetArrayIndex()
+    }
+
     /**
-     * The corner of the matrix where the vector starts
+     * The corner of the matrix where the array starts
      */
-    startCorner: Matrix.Corner
+    get startCorner(): Matrix.Corner{
+      return this._startCorner
+    }
+    set startCorner(v: Matrix.Corner){
+      this._startCorner = v
+      this.updateGetArrayIndex()
+    }
+
     /**
-     * The initial direction the vector travels from the start corner across
-     * the matrix
+     * The initial direction the array travels from the start corner across the matrix
      */
-    direction: Matrix.Direction
+    get direction(): Matrix.Direction{
+      return this._direction
+    }
+    set direction(v: Matrix.Direction){
+      this._direction = v
+      this.updateGetArrayIndex()
+    }
+
     /**
-     * The repeating partern the vector follows to create the matrix
+     * The repeating partern the array follows to create the matrix
      */
-    pattern: Matrix.Pattern
+    get pattern(): Matrix.Pattern{
+      return this._pattern
+    }
+    set pattern(v: Matrix.Pattern){
+      this._pattern = v
+      this.updateGetArrayIndex()
+    }
+
+    /**
+     * Cache the algorithm
+     */
+    get cacheAlgorithm(): boolean{
+      return this._cacheAlgorithm
+    }
+    set cacheAlgorithm(v: boolean){
+      this._cacheAlgorithm = v
+      this.updateGetArrayIndex()
+    }
+
+    /**
+     * Cache the data
+     */
+    get cacheData(): boolean{
+      return this._cacheData
+    }
+    set cacheData(v: boolean){
+      this._cacheData = v
+      this.updateGetArrayIndex()
+    }
+
+    updateGetArrayIndex(){
+      if(this.cacheData){
+        this.getArrayIndex = memoizeMatrixIndexGetter(this.getArrayIndexSlow, this)
+      }else if (this.cacheAlgorithm){
+        this.getArrayIndex = generateIndexGetter(this)
+      }else{
+        this.getArrayIndex = this.getArrayIndexSlow
+      }
+    }
+
 
     /**
      * Creates a new Matrix
@@ -87,15 +225,19 @@ export class Matrix {
      * ```
      */
     constructor(options: Matrix.Constuctor) {
-      this.width = options.width || 0
-      this.height = options.height || 0
-      this.startCorner = options.startCorner || Matrix.Corner.BottomLeft
-      this.direction = options.direction || Matrix.Direction.X
-      this.pattern = options.pattern || Matrix.Pattern.zigzag
+      this.getArrayIndex = (x:Number,y:number)=>0 //temporarily assign a dummy function
+      this._width = options.width || 0
+      this._height = options.height || 0
+      this._startCorner = options.startCorner || Matrix.Corner.BottomLeft
+      this._direction = options.direction || Matrix.Direction.X
+      this._pattern = options.pattern || Matrix.Pattern.zigzag
+      this._cacheAlgorithm = options.cacheAlgorithm || true
+      this._cacheData = options.cacheData || true
+      this.updateGetArrayIndex()
     }
 
     /**
-     * The full vector length for this matrix. Can not be set directly.
+     * The full array length for this matrix. Can not be set directly.
      * calculated based on the width and height of the matrix.
      * (beta)
      * @public
@@ -105,10 +247,10 @@ export class Matrix {
     }
 
     /**
-     * The sub vector length for this matrix. The full vector needs to be divided
-     * in to smaller "sub" vectors which are laied out to cover the matrix. Each
-     * subvector will have the same length which will be wither the width or height
-     * of the matrix, depending on the vector direction.
+     * The sub-array length for this matrix. The full array needs to be divided
+     * in to smaller "sub" arrays which are laied out to cover the matrix. Each
+     * sub-array will have the same length which will be wither the width or height
+     * of the matrix, depending on the array direction.
      * (beta)
      * @public
      */
@@ -125,8 +267,8 @@ export class Matrix {
     }
 
     /**
-     * Gets or sets the sub vector count for this matrix. This will either be
-     * the width or height of the matrix, depending on the vector direction.
+     * Gets or sets the sub-array count for this matrix. This will either be
+     * the width or height of the matrix, depending on the array direction.
      * (beta)
      * @public
      */
@@ -200,93 +342,195 @@ export class Matrix {
     isRightStart():  boolean {return this.startCorner == Matrix.Corner.TopRight || this.startCorner == Matrix.Corner.BottomRight}
 
     /**
-     * Return this 1D vector position of a value given it's 2D matrix coordinates
+     * Returns whether this matrix has direction == Matrix.Direction.X
+     * @public
+     * @returns true or false
+     */
+    isXDirection():  boolean {return this.direction == Matrix.Direction.X}
+    /**
+     * Returns whether this matrix has direction == Matrix.Direction.Y
+     * @public
+     * @returns true or false
+     */
+    isYDirection():  boolean {return this.direction == Matrix.Direction.Y}
+
+
+    /**
+     * Return this 1D array position of a value given it's 2D matrix coordinates
      * (beta)
      * @public
      * @param x - the x coordinate in the matrix
      * @param y - the y coordinate in the matrix
-     * @returns - the corresponding possition in the vector ("`n`")
+     * @returns - the corresponding possition in the array ("`n`")
      */
-    getVectorIndex(x: number, y: number): number{
-      //Correct for start corner (using negative coordinates for now)
-      if ( this.startCorner == Matrix.Corner.TopLeft ||
-           this.startCorner == Matrix.Corner.TopRight ) {
-        y *= -1
-        y += -1
-      }
-      if ( this.startCorner == Matrix.Corner.BottomRight ||
-           this.startCorner == Matrix.Corner.TopRight ) {
-        x *= -1
-        x += -1
-      }
+    getArrayIndex: indexGetterMemberFunction
 
 
-      var res = {
-         full: -1,
-         rem: -1
-      }
+    /**
+     * Return this 1D array position of a value given it's 2D matrix coordinates
+     * (beta)
+     * @public
+     * @param x - the x coordinate in the matrix
+     * @param y - the y coordinate in the matrix
+     * @returns - the corresponding possition in the array ("`n`")
+     */
+    getArrayIndexSlow (x: number,y: number): number{
 
-      //Correct for direction
-      if(this.direction === Matrix.Direction.Y){
-        res = {
-          full: x,
-          rem: y
-        }
-      }else{
-        res = {
-          full: y,
-          rem: x
-        }
-      }
+       if ( this.isTopStart() ) {
+         y = this.height - 1 - y
+       }
+       if ( this.isRightStart() ) {
+         x = this.width - 1 - x
+       }
 
-      //Replace negative coordinates with absolute
-      if(res.full < 0){
-        res.full = this.subArrayCount + res.full
-      }
-      if(res.rem < 0){
-        res.rem = this.subArrayLength + res.rem
-      }
+       //Step 2: Correct for direction
+       var res = {full:0, rem:0}
+       if(this.isYDirection()){
+         res = {full: x, rem: y}
+       }else{
+         res = {full: y, rem: x}
+       }
 
-      //Correct for zigzag
-      if(this.pattern === Matrix.Pattern.zigzag){
-        if((res.full % 2) != 0){
-          res.rem = this.subArrayLength - res.rem - 1
-        }
-      }
+       //Step 3: Correct for zigzag
+       if(this.pattern === Matrix.Pattern.zigzag){
+         if((res.full % 2) != 0){
+           res.rem = this.subArrayLength - res.rem - 1
+         }
+       }
 
-      return res.full * this.subArrayLength + res.rem
+       return res.full * this.subArrayLength + res.rem
+    }
+
+    arrayLike: ArrayLike<any> = {
+      setValue: (i,v)=>{},
+      getValue: (i)=>{return undefined}
+    }
+
+    /**
+     * Use any object that conforms to the array like intrface at the underlying
+     * array that this matrix scans to
+     * @public
+     * @param arrayLike - an ArrayLike object
+     */
+    useArrayLike(arrayLike: ArrayLike<any> ) {
+      this.arrayLike = arrayLike
+    }
+
+    /**
+     * Use a standard Javascript Array at the underlying
+     * array that this matrix scans to
+     * @public
+     * @param array - an Array object
+     */
+    useArray(array: any[] ) {
+      this.arrayLike = {
+        setValue: (i,v)=>{array[i] = v},
+        getValue: (i)=>{return array[i]}}
+    }
+
+    /**
+     * Set a value in the underlying array based on it's coordinates inthe matrix
+     * @public
+     * @param x - x coordinate
+     * @param y - y coordinate
+     * @param value - value to set
+     */
+    setValue(x: number, y:number, value: any ) : void{
+      this.arrayLike.setValue(this.getArrayIndex(x, y), value)
     }
 
 
     /**
-     * Return all value positions with the `x,y` coordinates in the matrix and thier `n` possition in the vector
+     * Return all value positions with the `x,y` coordinates in the matrix and thier `n` possition in the array
      * @public
      * @returns - array of Position items
      */
     getAllPositions() : Matrix.Position[]{
       var res:Matrix.Position[]=[]
       for(let c of generateCoordinates(this.width, this.height)){
-        let n = this.getVectorIndex(c.x, c.y)
+        let n = this.getArrayIndex(c.x, c.y)
         res[n]={n, ...c}
       }
       return res
     }
 }
 
+//function generateIndexGetterWithCache(m: Matrix): indexGetterMemberFunction {
+//  var fnCache: string = generateIndexGetterBase(m)
+//  fnCache =
+//  //`if(false){
+//  `if(this._dataCache[x + (100 * y)] !== undefined){
+//    console.log("cache hit", x, y, this._dataCache)
+//    return this._dataCache[x + (100 * y)]
+//  }else{
+//    console.log("cache miss", x, y, this._dataCache)
+//    ${fnCache}
+//    this._dataCache[x + (100 * y)] = result
+//    return result
+//  }`
+//  return <indexGetterMemberFunction>(new Function('x', 'y', fnCache)).bind(m)
+//}
+
+function generateIndexGetter(m: Matrix): indexGetterMemberFunction {
+  var fnCache: string = generateIndexGetterBase(m)
+  fnCache =
+  //`if(false){
+  `${fnCache}
+   return result
+  `
+  return <indexGetterMemberFunction>(new Function('x', 'y', fnCache)).bind(m)
+}
+
+function generateIndexGetterBase(m: Matrix): string {
+
+    var fnCache = ""
+
+    //Step 1: Correct for start corner
+    if ( m.isTopStart() ) {
+      fnCache += `
+      y = ${m.height} - 1 - y`
+    }
+    if ( m.isRightStart() ) {
+      fnCache += `
+      x = ${m.width} - 1 - x`
+    }
+
+    //Step 2: Correct for direction
+    if(m.isYDirection()){
+      fnCache += `
+      var res = {full: x, rem: y}`
+    }else{
+      fnCache += `
+      var res = {full: y, rem: x}`
+    }
+
+    //Step 3: Correct for zigzag
+    if(m.pattern === Matrix.Pattern.zigzag){
+      fnCache += `
+      if((res.full % 2) != 0){
+        res.rem = ${m.subArrayLength} - res.rem - 1
+      }`
+    }
+
+    fnCache += `
+    var result = res.full * ${m.subArrayLength} + res.rem`
+
+    return fnCache
+}
+
 /**
- * A matrix based on a vector
- * (beta)
+ * Namespace with same name as the Matrix class. Houses enumerations.
  * @public
  */
 export namespace Matrix {
 
   /**
-   * The four corners of the matrix. The vector must start in one of these corners.
+   * The four corners of the matrix. The array must start in one of these corners.
    * @public
    */
   export enum Corner{
     /**
-     * Bottom left (x=0, y=0) (default vector start corner)
+     * Bottom left (x=0, y=0) (default array start corner)
      * @public
      */
     BottomLeft,
@@ -311,7 +555,7 @@ export namespace Matrix {
   }
 
   /**
-   * The directions the vector can travel across the matrix
+   * The directions the array can travel across the matrix
    * (beta)
    * @public
    */
@@ -327,16 +571,16 @@ export namespace Matrix {
   }
 
   /**
-   * The possible patterns the vector can follow to cover the matrix
+   * The possible patterns the array can follow to cover the matrix
    * @public
    */
   export enum Pattern{
     /**
-     * The direction of the vector will alternate (forwards and reverse with respect the initial vector direction)
+     * The direction of the array will alternate (forwards and reverse with respect the initial array direction)
      */
     zigzag,
     /**
-     * The direction of the vector will remain the same (always the same as the initial vector direction)
+     * The direction of the array will remain the same (always the same as the initial array direction)
      */
     loop,
   }
@@ -357,11 +601,11 @@ export namespace Matrix {
      */
     width?: number
     /**
-     * The corner of the matrix where the vector starts. Default `VectorStartCorner.BottomLeft`
+     * The corner of the matrix where the array starts. Default `VectorStartCorner.BottomLeft`
      */
     startCorner?: Corner
     /**
-     * The initial direction the vector travels from the start corner across
+     * The initial direction the array travels from the start corner across
      * the matrix . Default `Matrix.Direction.X`
      */
     direction?: Direction
@@ -369,15 +613,25 @@ export namespace Matrix {
      * Matrix pattern. Default `Matrix.Pattern.zigzag`
      */
     pattern?: Pattern
+
+    /**
+     * Whther to cahce the getArrayIndex algoritum or not (can give an 8x performance increase). Default True
+     */
+    cacheAlgorithm?: boolean
+
+    /**
+     * Whther to cahce the getArrayIndex data (the results) or not. Default False
+     */
+    cacheData?: boolean
   }
 
   /**
-   * The positions of a value, with it's `x,y` coordinate in the matrix and it's `n` possition in the vector
+   * The positions of a value, with it's `x,y` coordinate in the matrix and it's `n` possition in the array
    * @public
    */
   export interface Position{
     /**
-     * Position in the vector
+     * Position in the array
      */
     n:number
     /**

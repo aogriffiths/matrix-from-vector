@@ -8,11 +8,11 @@
 
 |  Class | Description |
 |  --- | --- |
-|  [Matrix](./matrix-scan.matrix.md) | A matrix based on a vector (beta) |
+|  [Matrix](./matrix-scan.matrix.md) | A matrix based on a array (beta) |
 
 ## Namespaces
 
 |  Namespace | Description |
 |  --- | --- |
-|  [Matrix](./matrix-scan.matrix.md) | A matrix based on a vector (beta) |
+|  [Matrix](./matrix-scan.matrix.md) | Namespace with same name as the Matrix class. Houses enumerations. |
 

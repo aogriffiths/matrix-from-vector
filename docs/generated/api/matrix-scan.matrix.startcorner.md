@@ -4,10 +4,12 @@
 
 ## Matrix.startCorner property
 
-The corner of the matrix where the vector starts
+The corner of the matrix where the array starts
 
 <b>Signature:</b>
 
 ```typescript
-startCorner: Matrix.Corner;
+get startCorner(): Matrix.Corner;
+
+set startCorner(v: Matrix.Corner);
 ```

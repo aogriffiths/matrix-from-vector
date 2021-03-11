@@ -4,37 +4,20 @@
 
 ```ts
 
-// Warning: (ae-internal-missing-underscore) The name "generateCoordinates" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
-export function generateCoordinates(w: number, h: number): Generator<{
-    x: number;
-    y: number;
-    xReverse: number;
-    yReverse: number;
-}, void, unknown>;
-
 // @public
 export class Matrix {
     constructor(options: Matrix.Constuctor);
-    // Warning: (ae-forgotten-export) The symbol "ArrayLike" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
-    arrayLike: ArrayLike_2<any>;
     get cacheAlgorithm(): boolean;
     set cacheAlgorithm(v: boolean);
     _cacheAlgorithm: boolean;
-    get cacheData(): boolean;
-    set cacheData(v: boolean);
-    _cacheData: boolean;
     get direction(): Matrix.Direction;
     set direction(v: Matrix.Direction);
     _direction: Matrix.Direction;
     get fullArrayLength(): number;
     getAllPositions(): Matrix.Position[];
-    // Warning: (ae-forgotten-export) The symbol "indexGetterMemberFunction" needs to be exported by the entry point index.d.ts
-    getArrayIndex: indexGetterMemberFunction;
-    getArrayIndexSlow(x: number, y: number): number;
+    getArrayIndex(x: number, y: number): number;
+    // Warning: (ae-forgotten-export) The symbol "getIndexFn" needs to be exported by the entry point index.d.ts
+    getArrayIndexFast: getIndexFn | undefined;
     get height(): number;
     set height(v: number);
     _height: number;
@@ -51,18 +34,19 @@ export class Matrix {
     get pattern(): Matrix.Pattern;
     set pattern(v: Matrix.Pattern);
     _pattern: Matrix.Pattern;
-    setValue(x: number, y: number, value: any): void;
+    // (undocumented)
+    reBuildScanAlgorithm(): void;
     get startCorner(): Matrix.Corner;
     set startCorner(v: Matrix.Corner);
     _startCorner: Matrix.Corner;
+    // Warning: (ae-forgotten-export) The symbol "AlgorithmStep" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    steps: AlgorithmStep[];
     get subArrayCount(): number;
     set subArrayCount(newV: number);
     get subArrayLength(): number;
     set subArrayLength(newV: number);
-    // (undocumented)
-    updateGetArrayIndex(): void;
-    useArray(array: any[]): void;
-    useArrayLike(arrayLike: ArrayLike_2<any>): void;
     get width(): number;
     set width(v: number);
     _width: number;
@@ -71,8 +55,6 @@ export class Matrix {
 // @public
 export namespace Matrix {
     export interface Constuctor {
-        cacheAlgorithm?: boolean;
-        cacheData?: boolean;
         direction?: Direction;
         height?: number;
         pattern?: Pattern;

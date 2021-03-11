@@ -4,7 +4,7 @@
 
 ## Matrix namespace
 
-A matrix based on a vector (beta)
+Namespace with same name as the Matrix class. Houses enumerations.
 
 <b>Signature:</b>
 
@@ -16,14 +16,14 @@ export declare namespace Matrix
 
 |  Enumeration | Description |
 |  --- | --- |
-|  [Corner](./matrix-scan.matrix.corner.md) | The four corners of the matrix. The vector must start in one of these corners. |
-|  [Direction](./matrix-scan.matrix.direction.md) | The directions the vector can travel across the matrix (beta) |
-|  [Pattern](./matrix-scan.matrix.pattern.md) | The possible patterns the vector can follow to cover the matrix |
+|  [Corner](./matrix-scan.matrix.corner.md) | The four corners of the matrix. The array must start in one of these corners. |
+|  [Direction](./matrix-scan.matrix.direction.md) | The directions the array can travel across the matrix (beta) |
+|  [Pattern](./matrix-scan.matrix.pattern.md) | The possible patterns the array can follow to cover the matrix |
 
 ## Interfaces
 
 |  Interface | Description |
 |  --- | --- |
 |  [Constuctor](./matrix-scan.matrix.constuctor.md) | Parameters for creating a Matrix. Used by [the Matrix constructor](./matrix-scan.matrix.md)<!-- -->. (beta) |
-|  [Position](./matrix-scan.matrix.position.md) | The positions of a value, with it's <code>x,y</code> coordinate in the matrix and it's <code>n</code> possition in the vector |
+|  [Position](./matrix-scan.matrix.position.md) | The positions of a value, with it's <code>x,y</code> coordinate in the matrix and it's <code>n</code> possition in the array |
 

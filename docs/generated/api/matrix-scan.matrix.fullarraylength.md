@@ -4,7 +4,7 @@
 
 ## Matrix.fullArrayLength property
 
-The full vector length for this matrix. Can not be set directly. calculated based on the width and height of the matrix. (beta)
+The full array length for this matrix. Can not be set directly. calculated based on the width and height of the matrix. (beta)
 
 <b>Signature:</b>
 

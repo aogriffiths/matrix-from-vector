@@ -4,7 +4,7 @@
 
 ## Matrix.Position.n property
 
-Position in the vector
+Position in the array
 
 <b>Signature:</b>
 

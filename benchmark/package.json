@@ -1,0 +1,17 @@
+{
+  "name": "matrix-scan-ES6Import-example",
+  "version": "1.0.0",
+  "exampleName": "ES6Import",
+  "description": "An ES6 example",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "node index.mjs"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "matrix-scan": "file:../"
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "author": ""
+}

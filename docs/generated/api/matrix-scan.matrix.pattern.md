@@ -4,7 +4,7 @@
 
 ## Matrix.Pattern enum
 
-The possible patterns the vector can follow to cover the matrix
+The possible patterns the array can follow to cover the matrix
 
 <b>Signature:</b>
 
@@ -16,6 +16,6 @@ enum Pattern
 
 |  Member | Value | Description |
 |  --- | --- | --- |
-|  loop | <code>1</code> | The direction of the vector will remain the same (always the same as the initial vector direction) |
-|  zigzag | <code>0</code> | The direction of the vector will alternate (forwards and reverse with respect the initial vector direction) |
+|  loop | <code>1</code> | The direction of the array will remain the same (always the same as the initial array direction) |
+|  zigzag | <code>0</code> | The direction of the array will alternate (forwards and reverse with respect the initial array direction) |
 

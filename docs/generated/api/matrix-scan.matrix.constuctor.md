@@ -16,9 +16,11 @@ interface Constuctor
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [direction?](./matrix-scan.matrix.constuctor.direction.md) | [Direction](./matrix-scan.matrix.direction.md) | <i>(Optional)</i> The initial direction the vector travels from the start corner across the matrix . Default <code>Matrix.Direction.X</code> |
+|  [cacheAlgorithm?](./matrix-scan.matrix.constuctor.cachealgorithm.md) | boolean | <i>(Optional)</i> Whther to cahce the getArrayIndex algoritum or not (can give an 8x performance increase). Default True |
+|  [cacheData?](./matrix-scan.matrix.constuctor.cachedata.md) | boolean | <i>(Optional)</i> Whther to cahce the getArrayIndex data (the results) or not. Default False |
+|  [direction?](./matrix-scan.matrix.constuctor.direction.md) | [Direction](./matrix-scan.matrix.direction.md) | <i>(Optional)</i> The initial direction the array travels from the start corner across the matrix . Default <code>Matrix.Direction.X</code> |
 |  [height?](./matrix-scan.matrix.constuctor.height.md) | number | <i>(Optional)</i> Height of the matrix. Default <code>0</code>. |
 |  [pattern?](./matrix-scan.matrix.constuctor.pattern.md) | [Pattern](./matrix-scan.matrix.pattern.md) | <i>(Optional)</i> Matrix pattern. Default <code>Matrix.Pattern.zigzag</code> |
-|  [startCorner?](./matrix-scan.matrix.constuctor.startcorner.md) | [Corner](./matrix-scan.matrix.corner.md) | <i>(Optional)</i> The corner of the matrix where the vector starts. Default <code>VectorStartCorner.BottomLeft</code> |
+|  [startCorner?](./matrix-scan.matrix.constuctor.startcorner.md) | [Corner](./matrix-scan.matrix.corner.md) | <i>(Optional)</i> The corner of the matrix where the array starts. Default <code>VectorStartCorner.BottomLeft</code> |
 |  [width?](./matrix-scan.matrix.constuctor.width.md) | number | <i>(Optional)</i> Width of the matrix. Default <code>0</code>. |
 

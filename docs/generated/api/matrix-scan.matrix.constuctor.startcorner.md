@@ -4,7 +4,7 @@
 
 ## Matrix.Constuctor.startCorner property
 
-The corner of the matrix where the vector starts. Default `VectorStartCorner.BottomLeft`
+The corner of the matrix where the array starts. Default `VectorStartCorner.BottomLeft`
 
 <b>Signature:</b>
 

@@ -4,7 +4,7 @@
 
 ## Matrix.Constuctor.direction property
 
-The initial direction the vector travels from the start corner across the matrix . Default `Matrix.Direction.X`
+The initial direction the array travels from the start corner across the matrix . Default `Matrix.Direction.X`
 
 <b>Signature:</b>
 

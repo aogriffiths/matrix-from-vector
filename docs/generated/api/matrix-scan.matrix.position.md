@@ -4,7 +4,7 @@
 
 ## Matrix.Position interface
 
-The positions of a value, with it's `x,y` coordinate in the matrix and it's `n` possition in the vector
+The positions of a value, with it's `x,y` coordinate in the matrix and it's `n` possition in the array
 
 <b>Signature:</b>
 
@@ -16,7 +16,7 @@ interface Position
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [n](./matrix-scan.matrix.position.n.md) | number | Position in the vector |
+|  [n](./matrix-scan.matrix.position.n.md) | number | Position in the array |
 |  [x](./matrix-scan.matrix.position.x.md) | number | x coordinate in the matrix |
 |  [y](./matrix-scan.matrix.position.y.md) | number | y coordinate in the matrix |
 

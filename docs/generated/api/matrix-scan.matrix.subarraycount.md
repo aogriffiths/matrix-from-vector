@@ -4,7 +4,7 @@
 
 ## Matrix.subArrayCount property
 
-Gets or sets the sub vector count for this matrix. This will either be the width or height of the matrix, depending on the vector direction. (beta)
+Gets or sets the sub-array count for this matrix. This will either be the width or height of the matrix, depending on the array direction. (beta)
 
 <b>Signature:</b>
 
