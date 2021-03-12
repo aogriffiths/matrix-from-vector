@@ -10,10 +10,10 @@
   "additionalFilePath": "./pxt",
   "files": [
       "README.md",
-      "main.ts"
+      "pxt/main.ts",
   ],
   "testFiles": [
-      "test.ts"
+      "pxt/test.ts"
   ],
   "public": true,
   "supportedTargets": [
