@@ -1,0 +1,23 @@
+
+{
+  "name": "matrix-scan",
+  "version": "0.0.2",
+  "description": "Matrix Scanning Utility Extension",
+  "license": "ISC",
+  "dependencies": {
+      "core": "*"
+  },
+  "additionalFilePath": "./pxt",
+  "files": [
+      "README.md",
+      "main.ts"
+  ],
+  "testFiles": [
+      "test.ts"
+  ],
+  "public": true,
+  "supportedTargets": [
+      "microbit"
+  ],
+  "preferredEditor": "tsprj"
+}
