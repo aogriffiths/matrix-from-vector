@@ -10,7 +10,7 @@
   "additionalFilePath": "./pxt",
   "files": [
       "README.md",
-      "pxt/main.ts",
+      "pxt/main.ts"
   ],
   "testFiles": [
       "pxt/test.ts"
