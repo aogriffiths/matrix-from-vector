@@ -1,4 +1,4 @@
-import { Matrix } from "../lib/index"
+import { Matrix } from ".."
 
 //3x3 matricies
 export interface Test {

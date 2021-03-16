@@ -10,6 +10,8 @@
   "additionalFilePath": "./pxt",
   "files": [
       "README.md",
+      "pxt/enums.ts",
+      "pxt/matrix.ts",
       "pxt/main.ts"
   ],
   "testFiles": [

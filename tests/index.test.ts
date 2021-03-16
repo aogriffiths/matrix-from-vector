@@ -1,6 +1,6 @@
 
 import { expect } from "chai";
-import { Matrix, generateCoordinates } from "../lib/index"
+import { Matrix, generateCoordinates } from ".."
 import  {Test, testCases} from "./matrixTestCases"
 
 describe('Matrix', function() {
